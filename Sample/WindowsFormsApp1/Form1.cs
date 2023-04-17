@@ -22,5 +22,14 @@ namespace WindowsFormsApp1 {
             int sum = num1 + num2;
             tbAns.Text = sum.ToString();
         }
+
+        //イベントハンドラ
+        private void btPow_Click(object sender, EventArgs e) {
+            int ans = (int)nudX.Value;
+            for (int i = 0; i < nudY.Value-1; i++) { 
+                ans *= (int)nudX.Value;
+            }
+            tbResult.Text = ans.ToString();
+        }
     }
 }
