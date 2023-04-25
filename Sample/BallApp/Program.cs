@@ -35,7 +35,16 @@ namespace BallApp {
 
         //キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            throw new NotImplementedException();
+            Obj barObj =null;
+            pb = new PictureBox();   //画像を表示するコントロール
+
+
+            if (e.KeyCode == Keys.Tab){
+                barObj = new Bar(1,1);
+            }
+            
+
+
         }
 
 
@@ -61,18 +70,15 @@ namespace BallApp {
             balls.Add(ballObj);
             pbs.Add(pb);
 
-            this.Text = "BallGamr:" + SoccerBall.Count + ":" + TennisBall.Count;
+            this.Text = "BallGamr   soccer:" + SoccerBall.Count + "   tennis:" + TennisBall.Count;
 
             moveTimer.Start();  //タイマースタート
         }
 
         //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
-
-            for (int i = 0; i < balls.Count; i++)
-            {
+            for (int i = 0; i < balls.Count; i++){
                 balls[i].Move();  //移動
-               // balls[i].Move();
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY); //画像の位置
             }
         }

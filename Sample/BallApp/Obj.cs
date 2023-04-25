@@ -15,6 +15,7 @@ namespace BallApp {
         private double moveX;   //移動量（ｘ方向）
         private double moveY;   //移動量（ｙ方向）
 
+
         //プロパティ
         public Image Image { get => image; set => image = value; } 
         public double PosX { get => posX; set => posX = value; }
@@ -22,14 +23,16 @@ namespace BallApp {
         public double MoveX { get => moveX; set => moveX = value; }
         public double MoveY { get => moveY; set => moveY = value; }
 
+
         //コンストラクタ
         public Obj(double PosX,double PosY,string path) {
             this.PosX = PosX;
             this.PosY = PosY;
             Image = Image.FromFile(path);
-
             //後ほど追加あり
+
         }
+
 
         //移動メソッド（抽象メソッド）
         public abstract void Move();
