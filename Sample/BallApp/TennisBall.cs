@@ -36,13 +36,11 @@ namespace BallApp {
         public override void Move() {
             //Console.WriteLine("Ｘ座標 = {0}, Ｙ座標 = {1}", PosX, PosY);
 
-            if (PosY > 520 || PosY < 0)
-            {
+            if (PosY > 520 || PosY < 0){
                 MoveY = -MoveY;
             }
 
-            if (PosX > 730 || PosX < 0)
-            {
+            if (PosX > 730 || PosX < 0){
                 MoveX = -MoveX;
             }
 

@@ -72,7 +72,7 @@ namespace BallApp {
                 pb.Size = new Size(25, 25); //画像の表示サイズ
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
                 pb.Parent = this;
-                balls.Add(soccerBall);
+                balls.Add(tennisBall);
                 pbs.Add(pb);
             }
             
@@ -88,6 +88,7 @@ namespace BallApp {
             for (int i = 0; i < balls.Count; i++)
             {
                 balls[i].Move();  //移動
+               // balls[i].Move();
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY); //画像の位置
             }
         }
