@@ -8,74 +8,58 @@ using System.Windows.Forms;
 
 namespace BallApp {
     class Program : Form {
-
         private Timer moveTimer;    //タイマー用
-        private SoccerBall soccerBall;
-        private TennisBall tennisBall;
         private PictureBox pb;
-
-
-
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納用
         private List<PictureBox> pbs = new List<PictureBox>();      //表示用
-        
-
 
         private int count = 0;
+
 
         static void Main(string[] args) {
             Application.Run(new Program());
         }
 
+
         public Program() {
             this.Size = new Size(800, 600);
             this.BackColor = Color.Green;
             this.MouseClick += Program_MouseClick;
-      
-
-            
+            this.KeyDown += Program_KeyDown;
 
             moveTimer = new Timer();
             moveTimer.Interval = 10; //タイマーのインターバル（ms）
             moveTimer.Tick += MoveTimer_Tick;  //デリゲート登録
         }
 
-       
 
-       
+        //キーが押された時のイベントハンドラ
+        private void Program_KeyDown(object sender, KeyEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+
         //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
-
+            Obj ballObj = null;
+            pb = new PictureBox();   //画像を表示するコントロール
             
-
+            //ボールインスタンス生成
             if (e.Button == MouseButtons.Left){
-                //ボールインスタンス生成
-                soccerBall = new SoccerBall(e.X - 25, e.Y - 25);
-                pb = new PictureBox();   //画像を表示するコントロール
-                pb.Image = soccerBall.Image;
-                pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);　//画像の位置
+                ballObj = new SoccerBall(e.X - 25, e.Y - 25);
                 pb.Size = new Size(50, 50); //画像の表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-                pb.Parent = this;
-
-                //count += 1;
-                //this.Text = count + "個";
-                //this.Text = "BallGame:"  +bolls.Count;
-
-                balls.Add(soccerBall);  
-                pbs.Add(pb);
-            }else{
-                tennisBall = new TennisBall(e.X - 25, e.Y - 25);
-                pb = new PictureBox();
-                pb.Image = tennisBall.Image;
-                pb.Location = new Point((int)tennisBall.PosX, (int)tennisBall.PosY);　//画像の位置
+            }else if(e.Button == MouseButtons.Right){
+                ballObj = new TennisBall(e.X - 12, e.Y - 12);
                 pb.Size = new Size(25, 25); //画像の表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-                pb.Parent = this;
-                balls.Add(tennisBall);
-                pbs.Add(pb);
             }
-            
+
+            pb.Image = ballObj.Image;
+            pb.Location = new Point((int)ballObj.PosX, (int)ballObj.PosY);　//画像の位置
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
+            pb.Parent = this;
+
+            balls.Add(ballObj);
+            pbs.Add(pb);
 
             this.Text = "BallGamr:" + SoccerBall.Count + ":" + TennisBall.Count;
 
