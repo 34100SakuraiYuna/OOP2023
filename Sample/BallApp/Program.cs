@@ -33,11 +33,21 @@ namespace BallApp {
 
         //キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
+            Obj barObj;
             pb = new PictureBox();   //画像を表示するコントロール
 
 
             if (e.KeyCode == Keys.Tab){
-                _ = new Bar(10,10);
+                barObj = new Bar(500,500);
+                pb.Size = new Size(200, 15);
+
+                pb.Image = barObj.Image;
+                pb.Location = new Point((int)barObj.PosX, (int)barObj.PosY); //画像の位置
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
+                pb.Parent = this;
+
+                balls.Add(barObj);
+                pbs.Add(pb);
             }
             
 
