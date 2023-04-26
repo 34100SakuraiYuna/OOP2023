@@ -8,10 +8,14 @@ using System.Windows.Forms;
 
 namespace BallApp {
     class Program : Form {
+        
         private Timer moveTimer;    //タイマー用
         private PictureBox pb;
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納用
         private List<PictureBox> pbs = new List<PictureBox>();      //表示用
+
+        Bar bar;            //Barのインスタンス格納用
+        PictureBox pbBar;   //画像を表示するコントロール
 
 
         static void Main(string[] args) {
@@ -22,8 +26,20 @@ namespace BallApp {
         public Program() {
             this.Size = new Size(800, 600);
             this.BackColor = Color.Green;
+
             this.MouseClick += Program_MouseClick;
             this.KeyDown += Program_KeyDown;
+
+
+            bar = new Bar(300,500);
+            pbBar = new PictureBox();
+            pbBar.Image = bar.Image;
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+            pbBar.Size = new Size(200, 15);
+            pbBar.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
+            pbBar.Parent = this;
+
+
 
             moveTimer = new Timer();
             moveTimer.Interval = 10; //タイマーのインターバル（ms）
@@ -33,25 +49,8 @@ namespace BallApp {
 
         //キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            Obj barObj;
-            pb = new PictureBox();   //画像を表示するコントロール
-
-
-            if (e.KeyCode == Keys.Tab){
-                barObj = new Bar(500,500);
-                pb.Size = new Size(200, 15);
-
-                pb.Image = barObj.Image;
-                pb.Location = new Point((int)barObj.PosX, (int)barObj.PosY); //画像の位置
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-                pb.Parent = this;
-
-                balls.Add(barObj);
-                pbs.Add(pb);
-            }
-            
-
-
+            bar.Move(e.KeyData);
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
         }
 
 
