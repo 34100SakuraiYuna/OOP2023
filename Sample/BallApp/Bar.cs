@@ -16,23 +16,30 @@ namespace BallApp {
             MoveY = 0;            
         }
 
-        public void Move(Keys direction) {
-            //PosX += 20;
-
-            if (direction == Keys.Right){
-                if (PosX < 580){
-                    PosX += 5;
-                }
-            }else if (direction == Keys.Left){
-                if (PosX > 5){
-                    PosX -= 5;
-                }
-            }
-        }
+       
 
 
         public override void Move() {
             ;
+        }
+
+        public override void Move(Keys direction) {
+            //PosX += 20;
+
+            if (direction == Keys.Right)
+            {
+                if (PosX < 584)
+                {
+                    PosX += 2;
+                }
+            }
+            else if (direction == Keys.Left)
+            {
+                if (PosX > 2)
+                {
+                    PosX -= 2;
+                }
+            }
         }
     }
 }
