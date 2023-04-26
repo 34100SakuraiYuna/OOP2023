@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace BallApp {
     class Program : Form {
-        
         private Timer moveTimer;    //タイマー用
         private PictureBox pb;
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納用
@@ -30,7 +29,6 @@ namespace BallApp {
             this.MouseClick += Program_MouseClick;
             this.KeyDown += Program_KeyDown;
 
-
             bar = new Bar(300,500);
             pbBar = new PictureBox();
             pbBar.Image = bar.Image;
@@ -38,8 +36,6 @@ namespace BallApp {
             pbBar.Size = new Size(200, 15);
             pbBar.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
             pbBar.Parent = this;
-
-
 
             moveTimer = new Timer();
             moveTimer.Interval = 10; //タイマーのインターバル（ms）
@@ -81,10 +77,11 @@ namespace BallApp {
             moveTimer.Start();  //タイマースタート
         }
 
+
         //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
             for (int i = 0; i < balls.Count; i++){
-                balls[i].Move();  //移動
+                balls[i].Move(pbBar,pbs[i]);  //移動
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY); //画像の位置
             }
         }
