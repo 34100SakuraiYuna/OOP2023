@@ -13,8 +13,6 @@ namespace BallApp {
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納用
         private List<PictureBox> pbs = new List<PictureBox>();      //表示用
 
-        private int count = 0;
-
 
         static void Main(string[] args) {
             Application.Run(new Program());
@@ -35,12 +33,11 @@ namespace BallApp {
 
         //キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            Obj barObj =null;
             pb = new PictureBox();   //画像を表示するコントロール
 
 
             if (e.KeyCode == Keys.Tab){
-                barObj = new Bar(1,1);
+                _ = new Bar(10,10);
             }
             
 
