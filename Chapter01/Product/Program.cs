@@ -17,19 +17,18 @@ namespace ProductSample {
             //Console.WriteLine("大福もちの税込価格：" + daihuku.GetPriceIncludingtax() + "円");
             #endregion
 
-
             DateTime date = new DateTime(2023,5,8);
-            DateTime today = DateTime.Today;
 
 
-            //10日後を求める
-            DateTime daysAfter10 = date.AddDays(10);
-            DateTime daysBefore10 = date.AddDays(-10);
+            #region 今日の日付と前後10日
+            DateTime today = DateTime.Today;            //今日
+            DateTime daysAfter10 = today.AddDays(10);   //10日後
+            DateTime daysBefore10 = today.AddDays(-10); //10日前
 
-            Console.WriteLine("今日の日付：" + today);
-            Console.WriteLine("１０日後　：" + daysAfter10);
-            Console.WriteLine("１０日前　：" + daysBefore10);
-
+            Console.WriteLine("今日の日付：" + today.ToString("yyyy年MM月dd日"));
+            Console.WriteLine("１０日後　：" + daysAfter10.ToString("yyyy年MM月dd日"));
+            Console.WriteLine("１０日前　：" + daysBefore10.ToString("yyyy年MM月dd日"));
+            #endregion
         }
     }
 }
