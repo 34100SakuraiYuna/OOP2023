@@ -20,15 +20,35 @@ namespace ProductSample {
             DateTime date = new DateTime(2023,5,8);
 
 
-            #region 今日の日付と前後10日
-            DateTime today = DateTime.Today;            //今日
-            DateTime daysAfter10 = today.AddDays(10);   //10日後
-            DateTime daysBefore10 = today.AddDays(-10); //10日前
+            #region 今日の日付と前後10日(演習1)
+            //DateTime today = DateTime.Today;            //今日
+            //DateTime daysAfter10 = today.AddDays(10);   //10日後
+            //DateTime daysBefore10 = today.AddDays(-10); //10日前
 
-            Console.WriteLine("今日の日付：" + today.ToString("yyyy年MM月dd日"));
-            Console.WriteLine("１０日後　：" + daysAfter10.ToString("yyyy年MM月dd日"));
-            Console.WriteLine("１０日前　：" + daysBefore10.ToString("yyyy年MM月dd日"));
+            //Console.WriteLine("今日の日付：" + today.ToString("yyyy年MM月dd日"));
+            //Console.WriteLine("１０日後　：" + daysAfter10.ToString("yyyy年MM月dd日"));
+            //Console.WriteLine("１０日前　：" + daysBefore10.ToString("yyyy年MM月dd日"));
             #endregion
+
+            int year;
+            int month;
+            int day;
+            DateTime today = DateTime.Today;            //今日
+
+
+            Console.WriteLine("誕生日を入力");
+            Console.Write("西暦：");
+            year = int.Parse(Console.ReadLine());
+            Console.Write("月　：");
+            month = int.Parse(Console.ReadLine());
+            Console.Write("日　：");
+            day = int.Parse(Console.ReadLine());
+
+            DateTime birthday = new DateTime(year,month,day);
+            // TimeSpan interval = new TimeSpan(birthday);
+            TimeSpan interval = today - birthday;
+
+            Console.WriteLine("あなたは生まれてから今日まで" + interval.Days+ "日目です。");
         }
     }
 }
