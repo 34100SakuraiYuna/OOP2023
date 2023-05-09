@@ -30,10 +30,32 @@ namespace ProductSample {
             //Console.WriteLine("１０日前　：" + daysBefore10.ToString("yyyy年MM月dd日"));
             #endregion
 
+            #region 生まれてから何日経過したか（演習2）
+            //int year;
+            //int month;
+            //int day;
+            //DateTime today = DateTime.Today;            //今日
+
+
+            //Console.WriteLine("誕生日を入力");
+            //Console.Write("西暦：");
+            //year = int.Parse(Console.ReadLine());
+            //Console.Write("月　：");
+            //month = int.Parse(Console.ReadLine());
+            //Console.Write("日　：");
+            //day = int.Parse(Console.ReadLine());
+
+            //DateTime birthday = new DateTime(year,month,day);
+            //// TimeSpan interval = new TimeSpan(birthday);
+            //TimeSpan interval = today - birthday;
+
+            //Console.WriteLine("あなたは生まれてから今日まで" + interval.Days+ "日目です。");
+            #endregion
+
+            #region 何曜日に生まれたか（演習3）
             int year;
             int month;
             int day;
-            DateTime today = DateTime.Today;            //今日
 
 
             Console.WriteLine("誕生日を入力");
@@ -44,11 +66,10 @@ namespace ProductSample {
             Console.Write("日　：");
             day = int.Parse(Console.ReadLine());
 
-            DateTime birthday = new DateTime(year,month,day);
-            // TimeSpan interval = new TimeSpan(birthday);
-            TimeSpan interval = today - birthday;
+            DateTime birthday = new DateTime(year, month, day);
 
-            Console.WriteLine("あなたは生まれてから今日まで" + interval.Days+ "日目です。");
+            Console.WriteLine("あなたは" + birthday.ToString("dddd") + "に生まれました。");
+            #endregion
         }
     }
 }
