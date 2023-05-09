@@ -15,9 +15,8 @@ namespace ProductSample {
 
             //Console.WriteLine("かりんとうの税込価格：" + karintou.GetPriceIncludingtax() + "円");
             //Console.WriteLine("大福もちの税込価格：" + daihuku.GetPriceIncludingtax() + "円");
+            //DateTime date = new DateTime(2023,5,8);
             #endregion
-
-            DateTime date = new DateTime(2023,5,8);
 
 
             #region 今日の日付と前後10日(演習1)
@@ -29,6 +28,7 @@ namespace ProductSample {
             //Console.WriteLine("１０日後　：" + daysAfter10.ToString("yyyy年MM月dd日"));
             //Console.WriteLine("１０日前　：" + daysBefore10.ToString("yyyy年MM月dd日"));
             #endregion
+
 
             #region 生まれてから何日経過したか（演習2）
             //int year;
@@ -51,6 +51,7 @@ namespace ProductSample {
 
             //Console.WriteLine("あなたは生まれてから今日まで" + interval.Days+ "日目です。");
             #endregion
+
 
             #region 何曜日に生まれたか（演習3）
             int year;
