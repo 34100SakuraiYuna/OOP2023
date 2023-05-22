@@ -13,17 +13,17 @@ namespace Exercise03 {
             Console.WriteLine("１．店舗別売上げ");
             Console.WriteLine("２．商品カテゴリー別売上げ");
 
-            String num = Console.ReadLine();
+            int num = int.Parse(Console.ReadLine());
 
             switch(num) {
-                case "1":
+                case 1:
                     var amountPerStore = sales.GetPerStoreSales();
                     foreach(var obj in amountPerStore) {
                         Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
                     }
                     break;
 
-                case "2":
+                case 2:
                 var amountPerCategory = sales.GetPerCategorySales();
                 foreach(var obj in amountPerCategory) {
                     Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
