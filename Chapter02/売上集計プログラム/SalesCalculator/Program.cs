@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 namespace SalesCalculator {
     class Program {
         static void Main(string[] args) {
-        }
-
-
-        //売上データを読み込み、Saleオブジェクトへリストを返す
-        static List<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();
-
-
-
-            return sales;
+            var sales = new SalesCounter(@"data\sales.csv");
+            var amountPerStore = sales.GetPerStoreSales();
+            foreach(var obj in amountPerStore) {
+                Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
+            }
         }
     }
 }

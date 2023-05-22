@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "演習問題", "演習問�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise03", "Chapter02\演習問題\Exercise03\Exercise03.csproj", "{867D2FC6-21FF-49AD-839C-CD871B3EB559}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "Chapter02\演習問題\Exercise01\Exercise01.csproj", "{3EA24ABA-A155-4C83-9158-521043FBDE7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Chapter02\演習問題\Exercise02\Exercise02.csproj", "{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{867D2FC6-21FF-49AD-839C-CD871B3EB559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{867D2FC6-21FF-49AD-839C-CD871B3EB559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{867D2FC6-21FF-49AD-839C-CD871B3EB559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA24ABA-A155-4C83-9158-521043FBDE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA24ABA-A155-4C83-9158-521043FBDE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA24ABA-A155-4C83-9158-521043FBDE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA24ABA-A155-4C83-9158-521043FBDE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +90,8 @@ Global
 		{46375A41-6C98-47C7-9F89-79F58FF71E00} = {C0EC63B5-329F-4A95-A5F1-2B2892F91652}
 		{42E63C81-607A-417C-9E0B-BF654D02F945} = {587309DF-4AAA-4404-8157-D10C1711FBBE}
 		{867D2FC6-21FF-49AD-839C-CD871B3EB559} = {42E63C81-607A-417C-9E0B-BF654D02F945}
+		{3EA24ABA-A155-4C83-9158-521043FBDE7C} = {42E63C81-607A-417C-9E0B-BF654D02F945}
+		{21CC0BD3-CB30-43A4-A488-6F85BC5DC56D} = {42E63C81-607A-417C-9E0B-BF654D02F945}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D3ABC1D-DAB8-4020-8607-9DA76DC617CE}

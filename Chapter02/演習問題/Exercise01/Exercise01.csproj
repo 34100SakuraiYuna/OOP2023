@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{46375A41-6C98-47C7-9F89-79F58FF71E00}</ProjectGuid>
+    <ProjectGuid>{3EA24ABA-A155-4C83-9158-521043FBDE7C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SalesCalculator</RootNamespace>
-    <AssemblyName>SalesCalculator</AssemblyName>
+    <RootNamespace>Exercise01</RootNamespace>
+    <AssemblyName>Exercise01</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,14 +45,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sale.cs" />
-    <Compile Include="SalesCounter.cs" />
+    <Compile Include="Song.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Data\Sales.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
