@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 namespace Exercise03 {
     class Program {
         static void Main(string[] args) {
+            Console.WriteLine("＊＊売上集計＊＊");
+            Console.WriteLine("１．店舗別売り上げ");
+            Console.WriteLine("２．商品カテゴリー別売り上げ");
+            Console.Write(">");
+
+            int select = int.Parse(Console.ReadLine());
             var sales = new SalesCounter(@"data\sales.csv");
 
-            Console.WriteLine("＊＊売上集計＊＊");
-            Console.WriteLine("１．店舗別売上げ");
-            Console.WriteLine("２．商品カテゴリー別売上げ");
 
-            int num = int.Parse(Console.ReadLine());
-
-            switch(num) {
+            switch(select) {
                 case 1:
                     var amountPerStore = sales.GetPerStoreSales();
                     foreach(var obj in amountPerStore) {
@@ -30,9 +31,6 @@ namespace Exercise03 {
                 }
                     break;
             }
-
-
-            
         }
     }
 }
