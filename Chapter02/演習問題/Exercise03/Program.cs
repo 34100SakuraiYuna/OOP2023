@@ -22,14 +22,14 @@ namespace Exercise03 {
                     foreach(var obj in amountPerStore) {
                         Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
                     }
-                    break;
+                break;
 
                 case 2:
-                var amountPerCategory = sales.GetPerCategorySales();
-                foreach(var obj in amountPerCategory) {
-                    Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
-                }
-                    break;
+                    var amountPerCategory = sales.GetPerCategorySales();
+                    foreach(var obj in amountPerCategory) {
+                        Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
+                    }
+                break;
             }
         }
     }
