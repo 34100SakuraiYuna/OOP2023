@@ -42,12 +42,19 @@ namespace Exercise01 {
             var query = numbers.Where(s => s>=50);
             foreach(int i in query)
                 Console.WriteLine(i);
+
+            //1行バージョン
+            //numbers.Where(i => i >= 50).ToList().ForEach(Console.WriteLine);
+
         }
 
         private static void Exercise1_4(List<int> numbers) {
             List<int> query = numbers.Select(i => i * 2).ToList();
             foreach(int i in query)
                 Console.WriteLine(i);
+
+            //1行バージョン
+            //numbers.Select(i => i * 2).ToList().ForEach(Console.WriteLine);
         }
     }
 }
