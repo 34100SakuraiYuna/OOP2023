@@ -10,16 +10,16 @@ namespace Exercise02 {
             var names = new List<string> {
                  "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
             };
-            Console.WriteLine("****3.1****");
+            Console.WriteLine("*****3.1*****");
             Exercise2_1(names);
             Console.WriteLine();
-            Console.WriteLine("****3.2****");
+            Console.WriteLine("*****3.2*****");
             Exercise2_2(names);
             Console.WriteLine();
-            Console.WriteLine("****3.3****");
+            Console.WriteLine("*****3.3*****");
             Exercise2_3(names);
             Console.WriteLine();
-            Console.WriteLine("****3.4****");
+            Console.WriteLine("*****3.4*****");
             Exercise2_4(names);
         }
 
@@ -54,7 +54,7 @@ namespace Exercise02 {
 
 
         private static void Exercise2_4(List<string> names) {
-            var query = names.Where(s => s.StartsWith("B")).Select(s=> s.ToString());
+            var query = names.Where(s => s.StartsWith("B")).Select(s=> s);
             foreach(var city in query) {
                 Console.WriteLine(city + "," + city.Length);
             }
