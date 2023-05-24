@@ -57,7 +57,7 @@ namespace Exercise02 {
         private static void Exercise2_4(List<string> names) {
             var query = names.Where(s => s.StartsWith("B")).Select(s=> new {s,s.Length});
             foreach(var city in query) {
-                Console.WriteLine("{0},{1}" + city.s + city.Length);
+                Console.WriteLine("{0},{1}" , city.s , city.Length);
             }
         }
     }
