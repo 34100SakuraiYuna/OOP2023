@@ -34,9 +34,11 @@ namespace Exercise01 {
             }
         }
 
+
         private static void Exercise1_2(List<int> numbers) {
             numbers.ForEach(s=> Console.WriteLine(s/2.0)) ;
         }
+
 
         private static void Exercise1_3(List<int> numbers) {
             var query = numbers.Where(s => s>=50);
@@ -45,8 +47,8 @@ namespace Exercise01 {
 
             //1行バージョン
             //numbers.Where(i => i >= 50).ToList().ForEach(Console.WriteLine);
-
         }
+
 
         private static void Exercise1_4(List<int> numbers) {
             List<int> query = numbers.Select(i => i * 2).ToList();
