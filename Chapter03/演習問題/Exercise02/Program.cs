@@ -24,6 +24,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<string> names) {
+            var index = 0;
             Console.WriteLine("都市名を入力。空行で終了");
             var line = Console.ReadLine();
 
@@ -31,7 +32,7 @@ namespace Exercise02 {
                 if(string.IsNullOrEmpty(line)) {
                     break;
                 } else {
-                    int index = names.FindIndex(s => s == line);
+                    index = names.FindIndex(s => s == line);
                     Console.WriteLine(index);
                     line = Console.ReadLine();
                 }
@@ -54,9 +55,9 @@ namespace Exercise02 {
 
 
         private static void Exercise2_4(List<string> names) {
-            var query = names.Where(s => s.StartsWith("B")).Select(s=> s);
+            var query = names.Where(s => s.StartsWith("B")).Select(s=> new {s,s.Length});
             foreach(var city in query) {
-                Console.WriteLine(city + "," + city.Length);
+                Console.WriteLine("{0},{1}" + city.s + city.Length);
             }
         }
     }
