@@ -45,7 +45,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(List<int> numbers) {
-
+            List<int> query = numbers.Select(i => i * 2).ToList();
+            foreach(int i in query)
+                Console.WriteLine(i);
         }
     }
 }
