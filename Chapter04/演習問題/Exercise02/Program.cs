@@ -10,8 +10,9 @@ namespace Exercise02 {
         static void Main(string[] args) {
             var ym = new Yearmonth(2023,5);
             var c21 = ym.Is12Century;
+            var ymNextMonth = ym.addOneMonth();
 
-            var a = ym.addOneMonth();
+            Console.WriteLine(ym);
         }
     }
 }
