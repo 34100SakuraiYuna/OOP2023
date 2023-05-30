@@ -13,6 +13,7 @@ namespace Exercise02 {
             var ymNextMonth = ym.addOneMonth();
 
             Console.WriteLine(ym);
+            Console.WriteLine(ymNextMonth);
         }
     }
 }

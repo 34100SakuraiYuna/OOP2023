@@ -35,8 +35,6 @@ namespace Exercise01 {
 
         public override string ToString() {
             return Year + "年" + Month + "月";
-            //return "{0}年{1}月";
-
         }
     }
 }
