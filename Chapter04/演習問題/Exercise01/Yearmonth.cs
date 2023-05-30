@@ -19,17 +19,25 @@ namespace Exercise01 {
 
         public bool Is12Century {
             get {
-               return (2001 <= this.Year && this.Year <= 2100);
+               return (2001 <= Year && Year <= 2100);
             }
         }
 
-        //public YearMonth addOneMonth() { 
+        public Yearmonth addOneMonth() {
+            Yearmonth yearMonth = new Yearmonth(2020,12);
+                
+            if(yearMonth.Month == 12) {
+                yearMonth.Month = 1;
+                yearMonth.Year++;
+            } else { 
+                yearMonth.Month++;
+            }
+            return yearMonth;
+        }
 
-        //}
 
-
-        //public override string ToString() { 
-
+        //public override string ToString() {
+        //    return "{0}年{1}月",Year,Month;
         //}
     }
 }
