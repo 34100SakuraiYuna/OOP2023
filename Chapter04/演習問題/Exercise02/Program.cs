@@ -49,7 +49,7 @@ namespace Exercise02 {
             }
             return null;
         }
-
+        
 
         private static void Exercise2_4(Yearmonth[] ymCollection) {
             var yearmonth = FindFirst21C(ymCollection);
