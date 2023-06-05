@@ -26,21 +26,31 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(string text) {
-           // int count = text.Count(text,nameof => n == ' ');
+            int count = text.Count(c => c == ' ');
             
-            //Console.WriteLine(count);
+            
+            Console.WriteLine("空白数：{0}",count);
         }
 
         private static void Exercise3_2(string text) {
-            text.Replace("big","small");
+            Console.WriteLine(text.Replace("big", "small"));
         }
 
         private static void Exercise3_3(string text) {
-            
+            string[] words = text.Split(' ').ToArray();
+
+
+            Console.WriteLine("単語数：" + words.Length);
         }
 
         private static void Exercise3_4(string text) {
-            
+            string[] words = text.Split(' ').ToArray();
+
+            foreach(var i in words) {
+                if(i.Length <= 4) {
+                    Console.WriteLine(i);
+                }
+            }
         }
 
         private static void Exercise3_5(string text) {
