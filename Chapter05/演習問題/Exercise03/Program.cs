@@ -26,23 +26,33 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(string text) {
-            throw new NotImplementedException();
+           // int count = text.Count(text,nameof => n == ' ');
+            
+            //Console.WriteLine(count);
         }
 
         private static void Exercise3_2(string text) {
-            throw new NotImplementedException();
+            text.Replace("big","small");
         }
 
         private static void Exercise3_3(string text) {
-            throw new NotImplementedException();
+            
         }
 
         private static void Exercise3_4(string text) {
-            throw new NotImplementedException();
+            
         }
 
         private static void Exercise3_5(string text) {
-            throw new NotImplementedException();
+            string[] texts = text.Split(' ').ToArray();
+            var sb = new StringBuilder();
+            foreach(var word in texts) {
+                sb.Append(word);
+                sb.Append(' ');
+            }
+
+            text = sb.ToString();
+            Console.WriteLine(text);
         }
     }
 }
