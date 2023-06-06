@@ -63,13 +63,20 @@ namespace important {
         }
         #endregion
 
-        #region 空白で区切って配列に格納する
+        #region 空白で区切って配列に格納する Split
         private static void textSprit(string text) {
             string[] array = text.Split(' ').ToArray();
         }
         #endregion
 
-
+        #region 配列に含まれる文字を探して、要素番号を返す IndexOf
+        private static void takeArrayNumber() {
+            string[] lines = { "Novelist","谷崎潤一郎","BestWork","春琴抄","Born","1886" };
+            
+            Console.WriteLine("作家：{0}", lines[(Array.IndexOf(lines, "Novelist")) + 1]);
+            //Array.IndexOf(探したい配列名, "探したい文字")
+        }
+        #endregion
 
 
 
