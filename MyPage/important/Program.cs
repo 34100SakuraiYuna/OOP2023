@@ -78,7 +78,30 @@ namespace important {
         }
         #endregion
 
+        #region 配列に含まれる文字を探して、要素番号を返す IndexOf
+        class Book {
+            public string Title { get; set; }
+            public int Price { get; set; }
+            public int Pages { get; set; }
+        }
 
+        private static void r() {
+            var books = new List<Book> {
+               new Book { Title = "こころ", Price = 400, Pages = 378 },
+               new Book { Title = "人間失格", Price = 281, Pages = 212 },
+            };
+
+            Console.WriteLine(books.Average(i => i.Price));  //金額の平均
+
+            Console.WriteLine(books.Max(i => i.Price));     //最も高い金額
+
+            var booksObj = books.Where(i => i.Price >= 500).OrderByDescending(i => i.Price);//500円以上本のタイトル&金額
+            foreach(var book in booksObj) {
+                Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
+            }
+
+        }
+        #endregion
 
 
 
