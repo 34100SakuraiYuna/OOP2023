@@ -63,7 +63,11 @@ namespace important {
         }
         #endregion
 
-
+        #region 空白で区切って配列に格納する
+        private static void textSprit(string text) {
+            string[] array = text.Split(' ').ToArray();
+        }
+        #endregion
 
 
 
