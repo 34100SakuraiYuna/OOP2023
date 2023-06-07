@@ -29,19 +29,29 @@ namespace Exercise01 {
             Console.WriteLine(numbers.Max());
         }
 
-        private static void Exercise1_2(int[] numbers) {
-            
-        }
 
-        private static void Exercise1_3(int[] numbers) {
-            var num = numbers.ToString();
-            foreach(var i in numbers) {
+        private static void Exercise1_2(int[] numbers) {
+            var num = numbers.Skip(numbers.Length-2);
+            foreach(var i in num) {
                 Console.WriteLine(i);
             }
         }
 
+
+        private static void Exercise1_3(int[] numbers) {
+            string[] strs = new string[numbers.Length];
+            for(int i = 0; i < numbers.Length; i++) {
+                strs[i] = numbers.ToString(); ;
+            }
+        }
+
+
         private static void Exercise1_4(int[] numbers) {
-            numbers.OrderBy(i=> i);
+            var sortNumber = numbers.OrderBy(i=> i).Take(3);
+            
+            foreach(var i in sortNumber) {
+                Console.WriteLine(i);
+            }
         }
 
         private static void Exercise1_5(int[] numbers) {
