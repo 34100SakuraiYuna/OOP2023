@@ -92,22 +92,23 @@ namespace important {
             };
 
 
-            Console.WriteLine(books.Average(i => i.Price));  //金額の平均
+            //最も高い金額
+            Console.WriteLine(books.Max(i => i.Price));     
+            Console.WriteLine();
 
-            Console.WriteLine(books.Max(i => i.Price));     //最も高い金額
 
-            //500円以上本のタイトル&金額
-            var booksObj = books.Where(i => i.Price >= 500).OrderByDescending(i => i.Price);
-            foreach(var book in booksObj) {
-                Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
+            //「物語」が含まれる本の平均ページ数
+            var booksOb = books.Where(i => i.Title.Contains("物語")).Average(i => i.Pages);
+            Console.WriteLine("平均：{0}ページ", booksOb);
+            Console.WriteLine();
+
+
+            //1000円以下でタイトルが長い順
+            var longTitleBooks = books.Where(i=> i.Price<=1000).OrderByDescending(i => i.Title.Length);
+            foreach(var book in longTitleBooks) {
+                Console.WriteLine(book.Title);
             }
-
-            //「物語」が含まれる本のタイトル&金額
-            var booksOb = books.Where(i => i.Title.Contains("物語")).OrderByDescending(i => i.Price);
-            foreach(var book in booksOb) {
-                Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
-            }
-
+            Console.WriteLine();
         }
         #endregion
 
