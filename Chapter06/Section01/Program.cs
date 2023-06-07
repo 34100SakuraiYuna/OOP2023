@@ -26,9 +26,19 @@ namespace Section01 {
             }
 
             //「物語」が含まれる本のタイトル&金額
-            var booksOb = books.Where(i => i.Title.Contains("物語")).OrderByDescending(i => i.Price);
-            foreach(var book in booksOb) {
+            booksObj = books.Where(i => i.Title.Contains("物語")).OrderByDescending(i => i.Price);
+            foreach(var book in booksObj) {
                 Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
+            }
+
+            //「物語」が含まれる本の平均ページ数
+            var booksOb = books.Where(i => i.Title.Contains("物語")).Average(i => i.Pages);
+            Console.WriteLine(booksOb);
+
+            //タイトルが長い順
+            var  booksStr = books.OrderByDescending(i => i.Title.Length);
+            foreach(var book in booksStr) {
+                Console.WriteLine(book.Title);
             }
         }
     }

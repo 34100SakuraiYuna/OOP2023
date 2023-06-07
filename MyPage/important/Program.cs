@@ -78,7 +78,7 @@ namespace important {
         }
         #endregion
 
-        #region 配列に含まれる文字を探して、要素番号を返す IndexOf
+        #region LINQ リストから条件を満たすものを抽出する
         class Book {
             public string Title { get; set; }
             public int Price { get; set; }
@@ -91,12 +91,20 @@ namespace important {
                new Book { Title = "人間失格", Price = 281, Pages = 212 },
             };
 
+
             Console.WriteLine(books.Average(i => i.Price));  //金額の平均
 
             Console.WriteLine(books.Max(i => i.Price));     //最も高い金額
 
-            var booksObj = books.Where(i => i.Price >= 500).OrderByDescending(i => i.Price);//500円以上本のタイトル&金額
+            //500円以上本のタイトル&金額
+            var booksObj = books.Where(i => i.Price >= 500).OrderByDescending(i => i.Price);
             foreach(var book in booksObj) {
+                Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
+            }
+
+            //「物語」が含まれる本のタイトル&金額
+            var booksOb = books.Where(i => i.Title.Contains("物語")).OrderByDescending(i => i.Price);
+            foreach(var book in booksOb) {
                 Console.WriteLine("{0}:{1}円", book.Title, book.Pages);
             }
 
