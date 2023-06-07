@@ -39,9 +39,9 @@ namespace Exercise01 {
 
 
         private static void Exercise1_3(int[] numbers) {
-            string[] strs = new string[numbers.Length];
-            for(int i = 0; i < numbers.Length; i++) {
-                strs[i] = numbers.ToString(); ;
+            var str = numbers.Select(i => i.ToString());
+            foreach(var s in str) {
+                Console.WriteLine(s);
             }
         }
 
