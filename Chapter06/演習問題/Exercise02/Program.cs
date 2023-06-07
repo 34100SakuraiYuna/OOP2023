@@ -41,10 +41,14 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
+            Console.WriteLine("価格：{0}　ページ数：",books.Where(s=> s.Title== "ワンダフル・C#ライフ").Select(s=> s.Price));
+            //Array.IndexOf(探したい配列名, "探したい文字")
 
         }
 
         private static void Exercise2_2(List<Book> books) {
+            var booksObject = books.Where(i => i.Title.Contains("C#")).Count();
+            Console.WriteLine("{0}冊", booksObject);
 
         }
 
