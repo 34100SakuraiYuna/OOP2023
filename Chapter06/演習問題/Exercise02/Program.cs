@@ -59,13 +59,19 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<Book> books) {
-            var bookIndex = books.FindIndex(i => i.Price >= 400);
+            var bookIndex = books.FindIndex(i => i.Price >= 4000);
             Console.WriteLine(books[bookIndex].Title);
+
+            //模範解答
+            //var book = books.FirstOrDefault(i => i.Price >= 4000);
+            //if(book != null) {
+            //    Console.WriteLine(book.Title);
+            //}
         }
 
         private static void Exercise2_5(List<Book> books) {
-            var book = books.Where(i => i.Price < 4000).Max(i => i.Pages);
-            Console.WriteLine(book);
+            var bookPages = books.Where(i => i.Price < 4000).Max(i => i.Pages);
+            Console.WriteLine(bookPages);
 
         }
 
