@@ -1,7 +1,7 @@
 ﻿namespace Test01 {
     class Student {
-        public string Name { get; private set; }
-        public string Subject { get; private set; }
-        public int Score { get; private set; }
+        public string Name { get; set; }        //名前
+        public string Subject { get;set; }     //科目名
+        public int Score { get; set; }          //点数
     }
 }
