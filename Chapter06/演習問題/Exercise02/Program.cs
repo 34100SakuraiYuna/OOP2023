@@ -49,21 +49,23 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<Book> books) {
-            var booksObject = books.Where(i => i.Title.Contains("C#")).Count();
-            Console.WriteLine("{0}冊", booksObject);
+            var bookCount = books.Count(i => i.Title.Contains("C#"));
+            Console.WriteLine("{0}冊", bookCount);
         }
 
         private static void Exercise2_3(List<Book> books) {
-            var book = books.Where(i => i.Title.Contains("C#")).Average(i => i.Pages);
-            Console.WriteLine("{0}ページ", book);
+            var pagesAvg = books.Where(i => i.Title.Contains("C#")).Average(i => i.Pages);
+            Console.WriteLine("{0}ページ", pagesAvg);
         }
 
         private static void Exercise2_4(List<Book> books) {
-            var book = books.FindIndex(i => i.Price >= 400);
-            Console.WriteLine(books[book].Title);
+            var bookIndex = books.FindIndex(i => i.Price >= 400);
+            Console.WriteLine(books[bookIndex].Title);
         }
 
         private static void Exercise2_5(List<Book> books) {
+            var book = books.Where(i => i.Price < 4000).Max(i => i.Pages);
+            Console.WriteLine(book);
 
         }
 
