@@ -123,8 +123,31 @@ namespace important {
 
             Console.WriteLine("実行時間：{0}",sw.Elapsed.ToString(@"ss\.fffff"));
         }
-    #endregion
+        #endregion
 
-}
+        #region LINQ リストから条件を満たす最初のものを返す
+        class Book2 {
+            public string Title { get; set; }
+            public int Price { get; set; }
+            public int Pages { get; set; }
+        }
+
+
+        List<Book2> books30 = new List<Book2> {
+               new Book2 { Title = "フレーズで覚えるC#入門", Price = 5300, Pages = 604 },
+               new Book2 { Title = "私でも分かったASP.NET MVC", Price = 3200, Pages = 453 },
+               new Book2 { Title = "楽しいC#プログラミング教室", Price = 2540, Pages = 348 },
+            };
+
+
+        private static void fastOnly(List<Book2> books30) {
+            var book = books30.FirstOrDefault(i => i.Price >= 4000);
+            if(book != null) {
+                Console.WriteLine(book.Title);
+            }
+        }
+        #endregion
+
+    }
 }
 
