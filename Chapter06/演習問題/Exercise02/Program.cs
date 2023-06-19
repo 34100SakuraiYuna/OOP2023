@@ -41,8 +41,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-            var a = books.Where(i => i.Title == "C#プログラミングの新常識").Select(i => i.Pages);
-            Console.WriteLine(a);
+            var a = books.Where(i => i.Title == "C#プログラミングの新常識");
+            foreach(var i in a) {
+                Console.WriteLine("価格：{0}",i.Price);
+                Console.WriteLine("ページ数：{0}",i.Pages);
+            }
         }
 
         private static void Exercise2_2(List<Book> books) {
@@ -57,7 +60,7 @@ namespace Exercise02 {
 
         private static void Exercise2_4(List<Book> books) {
             var book = books.FindIndex(i => i.Price >= 400);
-            Console.WriteLine();
+            Console.WriteLine(books[book].Title);
         }
 
         private static void Exercise2_5(List<Book> books) {
@@ -73,7 +76,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_7(List<Book> books) {
-            var booksObject = books.Where(i => i.Title.Contains("C#")).Where(i=> i.Pages >=500);
+            var booksObject = books.Where(i => i.Title.Contains("C#")).Where(i=> i.Pages <=500);
             foreach(var i in booksObject) {
                 Console.WriteLine(i.Title);
             }
@@ -81,7 +84,7 @@ namespace Exercise02 {
     }
 
     class Book { 
-        public string Title { get; set; }
+        public string Title { get; set; }　
         public int Price { get; set; }
         public int Pages { get; set; }
     }
