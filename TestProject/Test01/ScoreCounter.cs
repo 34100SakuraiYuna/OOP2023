@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Test01 {
     class ScoreCounter {
-        public static IEnumerable<Student> _score;
+        private IEnumerable<Student> _score;
 
         // コンストラクタ
         public ScoreCounter(string filePath) {
@@ -13,34 +13,32 @@ namespace Test01 {
 
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
+            var sales = new List<Student>();
+            var lines = File.ReadAllLines(filePath);       //ファイルからすべてのデータを読み込む
 
-
-            var dict = new Dictionary<string, int>();
-            foreach(var test in _score) {
-                if(dict.ContainsKey(test.Subject))
-                    dict[test.Subject] += test.Score;  //教科名が既に存在する（点数加算）
-                else
-                    dict[test.Subject] = test.Score;  //教科名が存在しない（新規格納）
+            foreach(var line in lines){                      //すべての行から一行ずつ取り出す
+                var items = line.Split(',');               //区切りで項目別に分ける
+                var sale = new Student{                            //Saleインスタンスを生成
+                    Name = items[0],
+                    Subject = items[1],
+                    Score = int.Parse(items[2])
+                };
+                sales.Add(sale);                                //Saleインスタンスをコレクションに追加
             }
-
-
-            return (IEnumerable<Student>)dict;
-
+            return sales;
         }
+
 
         //メソッドの概要： 
         public IDictionary<string, int> GetPerStudentScore() {
-
-
-            var scores = new List<Student>();
-
-
-         return (IDictionary<string, int>)scores;
+            var dict = new SortedDictionary<string, int>();
+            foreach(var sale in _score) {
+                if(dict.ContainsKey(sale.Subject))
+                    dict[sale.Subject] += sale.Score;  //店名が既に存在する（売り上げ加算）
+                else
+                    dict[sale.Subject] = sale.Score;  //店名が存在しない（新規格納）
+            }
+            return dict;
         }
-
-
-
-
-        
     }
 }
