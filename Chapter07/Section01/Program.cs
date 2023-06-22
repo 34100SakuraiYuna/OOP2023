@@ -84,24 +84,46 @@ namespace Section01 {
 
 
             //Console.WriteLine("県庁所在地の登録");
-            //Console.Write("県名：");
 
             //while(true) {
+            //    Console.Write("県名：");
             //    pref = Console.ReadLine();
-            //    if(pref == "999") { 
-            //        break;
-            //    } 
+            //    if(pref == "999")break;
             //    Console.Write("所在地：");
             //    city = Console.ReadLine();
+
+            //    if(prefOfficeDict.ContainsKey(pref)) {
+            //        Console.WriteLine("すでに県名が登録されています。");
+            //        Console.Write("上書きしますか？(y,n)：");
+            //        if(Console.ReadLine() != "y") {
+            //            continue;
+            //        }
+            //    }
             //    prefOfficeDict[pref] = city;
-            //    Console.Write("県名：");
             //}
 
 
-            //Console.Write("県名を入力：");
-            //var inputPref = Console.ReadLine();
-            //Console.WriteLine("{0}です", prefOfficeDict[inputPref]);
+            //Console.WriteLine();
+            //Console.WriteLine("1:一覧表示,2:県名指定");
+            //Console.Write("＞");
+            //var selected = Console.ReadLine();
+
+            //if(selected == "1") {
+            //    foreach(var item in prefOfficeDict) {
+            //        Console.WriteLine("{0}({1})", item.Key, item.Value);
+            //    }
+            //} else { 
+            //    Console.Write("県名を入力：");
+            //    var inputPref = Console.ReadLine();
+            //    Console.WriteLine("{0}です", prefOfficeDict[inputPref]);
+            //}
             #endregion
         }
+    }
+
+
+    class CityInfo {
+            string City { get; set; }
+            int Population { get; set; }
     }
 }
