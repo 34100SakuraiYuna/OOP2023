@@ -31,6 +31,7 @@ namespace Section01 {
             var prefectureDict = new Dictionary<string, string>();
             var prefecture = "";
             var prefecturalCapital = "";
+            var ans = "";
 
 
             Console.WriteLine("県庁所在地の登録");
@@ -39,13 +40,26 @@ namespace Section01 {
             Console.Write("県名：");
             prefecture = Console.ReadLine();
 
+            
             while(prefecture != "999") {
+                if(prefectureDict.ContainsKey(prefecture)) {
+                    Console.WriteLine("すでに登録済みですが、再登録しますか？");
+                    Console.Write("yes/no：");
+                    ans = Console.ReadLine();
+                    if(ans == "no") {
+                        Console.Write("県名：");
+                        prefecture = Console.ReadLine();
+                        continue;
+                    }
+                }
+
                 Console.Write("所在地：");
                 prefecturalCapital = Console.ReadLine();
                 prefectureDict[prefecture] = prefecturalCapital;
                 Console.Write("県名：");
                 prefecture = Console.ReadLine();
             }
+
 
             Console.Write("県名を入力：");
             prefecture = Console.ReadLine();
