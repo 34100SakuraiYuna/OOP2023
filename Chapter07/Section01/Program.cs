@@ -27,7 +27,7 @@ namespace Section01 {
             #endregion
 
 
-            #region 県庁所在地の登録
+            #region 県庁所在地の登録(ちゃんと動くよ)
             var prefectureDict = new Dictionary<string, CityInfo>();
             var prefecture = "";
             var prefecturalCapital = "";
@@ -130,12 +130,12 @@ namespace Section01 {
 
             //if(selected == "1") {
             //    foreach(var item in prefOfficeDict) {
-            //        Console.WriteLine("{0}({1})", item.Key, item.Value);
+            //        Console.WriteLine("{0}[{1}(人口：{2}人)]", item.Key, item.Value.City,item.Value.Population);
             //    }
             //} else {
             //    Console.Write("県名を入力：");
             //    var inputPref = Console.ReadLine();
-            //    Console.WriteLine("{0}です", prefOfficeDict[inputPref]);
+            //    Console.WriteLine("[{0}(人口：{1}人)]", prefOfficeDict[inputPref].City, prefOfficeDict[inputPref].Population);
             //}
             #endregion
         }
