@@ -39,6 +39,7 @@ namespace Section01 {
             Console.Write("県名：");
             prefecture = Console.ReadLine();
 
+            //再登録の確認
             while(prefecture != "999") {
                 if(prefectureDict.ContainsKey(prefecture)) {
                     Console.WriteLine("すでに登録済みですが、再登録しますか？");
@@ -51,6 +52,7 @@ namespace Section01 {
                     }
                 }
 
+                //(県庁)所在地などの登録
                 var cityInfo = new CityInfo();
 
                 Console.Write("所在地：");
@@ -67,7 +69,11 @@ namespace Section01 {
                 prefecture = Console.ReadLine();
             }
 
+            //並べ替え
+            var orderByDisc = prefectureDict.OrderByDescending(i => i.Value.Population);
 
+
+            //表示形式
             Console.WriteLine("1：一覧表示　　2：県名指定");
             Console.Write("表示形式：");
             ans = Console.ReadLine();
@@ -79,7 +85,8 @@ namespace Section01 {
                 ans = Console.ReadLine();
             }
             if(ans == "1") {
-                foreach(var i in prefectureDict) {
+                foreach(var i in orderByDisc) {
+                    
                     Console.WriteLine("{0}[{1}(人口：{2})]", i.Key, i.Value.City, i.Value.Population);
                 }
             } else {
@@ -129,7 +136,8 @@ namespace Section01 {
             //var selected = Console.ReadLine();
 
             //if(selected == "1") {
-            //    foreach(var item in prefOfficeDict) {
+            //    //一覧表示
+            //    foreach(var item in prefOfficeDict.OrderByDescending(p => p.Value.population)) {
             //        Console.WriteLine("{0}[{1}(人口：{2}人)]", item.Key, item.Value.City,item.Value.Population);
             //    }
             //} else {
