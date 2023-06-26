@@ -10,7 +10,7 @@ namespace Section02 {
 
             #region 都市の登録
             var prefectureDict = new Dictionary<string, List<CityInfo>>();
-            string prefecture,city,ans;
+            string prefecture, city, ans;
             int population;
             List<CityInfo> list;
 
@@ -34,7 +34,7 @@ namespace Section02 {
                 if(prefectureDict.ContainsKey(prefecture)) {
                     list = prefectureDict[prefecture];
                     list.Add(cityInfo);
-                
+
                 } else {
                     list = new List<CityInfo>();
                     list.Add(cityInfo);
@@ -43,19 +43,6 @@ namespace Section02 {
                 Console.Write("県名：");
                 prefecture = Console.ReadLine();
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,11 +70,13 @@ namespace Section02 {
                 Console.Write("県名を入力：");
                 prefecture = Console.ReadLine();
 
-                foreach(var j in prefectureDict[prefecture]) {
-                    Console.WriteLine("{0}[{1}(人口：{2})]", j.City, j.Population);
+                foreach(var pref in prefectureDict) {
+                    if(pref.Key.Equals(prefecture)) {
+                        foreach(var j in pref.Value) {
+                            Console.WriteLine("[{0}(人口：{1})]", j.City, j.Population);
+                        }
+                    }
                 }
-
-
             }
             #endregion
 
@@ -108,19 +97,20 @@ namespace Section02 {
             //    city = Console.ReadLine();
             //    Console.Write("人口：");
             //    population = int.Parse(Console.ReadLine());
-
-            //    //既に県名が登録されているか
-            //    if(prefDict.ContainsKey(pref)) {
-
-            //    } else { 
-                
-            //    }
-
-            //    //登録処理
-            //    prefDict[pref] = new CityInfo {
+            //    var cityInfo = new CityInfo {
             //        City = city,
             //        Population = population,
             //    };
+
+
+            //    //県名が未登録か
+            //    if(!prefDict.ContainsKey(pref)) {
+            //        //List<CityInfo>が存在しないためListを作成(new)する
+            //        prefDict[pref] = new List<CityInfo> { cityInfo };
+            //    }
+
+            //    //市町村データを追加
+            //    prefDict[pref].Add(cityInfo);
             //}
 
 
@@ -131,13 +121,14 @@ namespace Section02 {
 
             //if(selected == "1") {
             //    //一覧表示
-            //    foreach(var item in prefOfficeDict.OrderByDescending(p => p.Value.population)) {
+            //    foreach(var item in prefDict) {
             //        Console.WriteLine("{0}[{1}(人口：{2}人)]", item.Key, item.Value.City, item.Value.Population);
             //    }
             //} else {
+            //    //県名指定表示
             //    Console.Write("県名を入力：");
             //    var inputPref = Console.ReadLine();
-            //    Console.WriteLine("[{0}(人口：{1}人)]", prefOfficeDict[inputPref].City, prefOfficeDict[inputPref].Population);
+            //    Console.WriteLine("[{0}(人口：{1}人)]", prefDict[inputPref].City, prefOfficeDict[inputPref].Population);
             //}
             #endregion
 
