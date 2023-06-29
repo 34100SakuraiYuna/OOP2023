@@ -16,8 +16,15 @@ namespace Exercise01 {
 
         private static void Exercise1_1(string text) {
             #region　自分でやった
-            var dict = new Dictionary<Char, int>();
-            foreach(var c in text.ToUpper()) {
+
+            var dict = new SortedDictionary<TKey, TValue>();
+
+            foreach(var item in dict) {
+                item.Key = 'A';
+                item.Value = 0;
+            }
+
+            foreach(TKey c in text.ToUpper()) {
                 if('A' <= c && c <= 'Z') {
                     if(dict.ContainsKey(c)) {
                         dict[c]++;
