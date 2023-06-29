@@ -89,8 +89,7 @@ namespace Section02 {
             }
             #endregion
 
-
-            #region 県庁所在地の登録(模範解答)
+            #region 都市の登録(模範解答)
             //var prefDict = new Dictionary<string, List<CityInfo>>();
             //string pref, city;
             //int population;
