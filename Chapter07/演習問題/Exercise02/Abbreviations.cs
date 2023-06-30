@@ -19,10 +19,12 @@ namespace Exercise02 {
                          .ToDictionary(x => x[0], x => x[1]);
         }
 
+
         // 要素を追加
         public void Add(string abbr, string japanese) {
             _dict[abbr] = japanese;
         }
+
 
         // インデクサ - 省略語をキーに取る
         public string this[string abbr] {
@@ -31,10 +33,12 @@ namespace Exercise02 {
             }
         }
 
+
         // 日本語から対応する省略語を取り出す
         public string ToAbbreviation(string japanese) {
             return _dict.FirstOrDefault(x => x.Value == japanese).Key;
         }
+
 
         // 日本語の位置を引数に与え、それが含まれる要素(Key,Value)をすべて取り出す
         public IEnumerable<KeyValuePair<string, string>> FindAll(string substring) {
@@ -49,8 +53,11 @@ namespace Exercise02 {
         public int Count {
             get {
                 return _dict.Keys.Count;
+                    //模範解答
+                    //return  _dict.Count;
             }
         }
+
 
         //7.2.2
         public bool Remove(string abb) {
@@ -64,9 +71,11 @@ namespace Exercise02 {
             return b;
         }
 
+
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator() {
             return ((IEnumerable<KeyValuePair<string, string>>)_dict).GetEnumerator();
         }
+
 
         IEnumerator IEnumerable.GetEnumerator() {
             return ((IEnumerable)_dict).GetEnumerator();
@@ -74,8 +83,7 @@ namespace Exercise02 {
 
 
         public void print() {
-            var dict3 = _dict.Where(i => i.Key.Length == 3);
-            foreach(var item in dict3) {
+            foreach(var item in _dict.Where(i => i.Key.Length == 3)) {
                 Console.WriteLine("{0}={1}",item.Key,item.Value);
             }
         }

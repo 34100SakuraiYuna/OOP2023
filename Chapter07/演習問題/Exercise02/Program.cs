@@ -18,6 +18,9 @@ namespace Exercise02 {
             //7.2.3(Countプロパティの呼び出し)
             int count = abbrs.Count;
             Console.WriteLine(count);
+                //模範解答
+                //Console.WriteLine(abbrs.Count);
+
 
             //7.2.3(Removeの呼び出し)
             abbrs.Remove("");
