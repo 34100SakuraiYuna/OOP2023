@@ -69,6 +69,9 @@ namespace Exercise02 {
                 Console.WriteLine("false");
             }
             return b;
+
+                //模範解答
+                //return _dict.Remove(abb);
         }
 
 
