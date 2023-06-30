@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using Section03;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,15 +15,17 @@ namespace Exercise02 {
             abbrs.Add("NPT", "核兵器不拡散条約");
 
 
-            //7.2.3
-            //上のAddメソッドで、２つのオブジェクトを追加してて
-
+            //7.2.3(Countプロパティの呼び出し)
+            int count = abbrs.Count;
+            Console.WriteLine(count);
 
             //7.2.3(Removeの呼び出し)
-        
-        
+            abbrs.Remove("");
+
+
             //7.2.4
             //IEnumerable<>を実装したのでLINQが使える
+            abbrs.print();
         }
     }
 }

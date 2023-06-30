@@ -34,7 +34,7 @@ namespace Exercise01 {
                 }
             }
 
-            foreach(var item in dict.OrderBy(i=> i.Key)) {
+            foreach(var item in dict) {
                 Console.WriteLine("'{0}'：{1}",item.Key,item.Value);
             }
             #endregion

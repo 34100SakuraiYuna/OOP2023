@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Section03 {
+namespace Exercise02 {
     // List 7-19
     // 略語と対応する日本語を管理するクラス
     class Abbreviations : IEnumerable<KeyValuePair<string,string>>{
-        private Dictionary<string, string> _dict = new Dictionary<string, string>();
+         private Dictionary<string, string> _dict = new Dictionary<string, string>();
 
         // コンストラクタ
         public Abbreviations() {
@@ -45,9 +45,11 @@ namespace Section03 {
         }
 
 
-        //7.2.1
+        //7.2.1（プロパティ）
         public int Count {
-            get;
+            get {
+                return _dict.Keys.Count;
+            }
         }
 
         //7.2.2
@@ -68,6 +70,14 @@ namespace Section03 {
 
         IEnumerator IEnumerable.GetEnumerator() {
             return ((IEnumerable)_dict).GetEnumerator();
+        }
+
+
+        public void print() {
+            var dict3 = _dict.Where(i => i.Key.Length == 3);
+            foreach(var item in dict3) {
+                Console.WriteLine("{0}={1}",item.Key,item.Value);
+            }
         }
     }
 }
