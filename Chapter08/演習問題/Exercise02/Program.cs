@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
+            #region
             var day = DateTime.Today;
             DateTime next;
             string dayOfWeek;
@@ -21,13 +22,31 @@ namespace Exercise02 {
 
                 Console.WriteLine("{0}の次週の{1}：{2}({3})", day.ToString("yyyy/MM/dd"), dayofweek, next.ToString("yy/MM/dd"), dayOfWeek);
             }
+            #endregion
+
+            #region　模範解答
+            //var dt = DateTime.Now;
+
+            //foreach(var dayofweek in Enum.GetValues(typeof(DayOfWeek))) {
+            //    Console.Write("{0:yy/MM/dd}の次週の{1}:",dt,dayofweek);
+            //    Console.WriteLine("{0:yy/MM/dd(ddd)}",NextDay(dt,(DayOfWeek)dayofweek));
+            //}
+            #endregion
         }
 
         public static DateTime NextDay(DateTime date,DayOfWeek dayOfWeek) {
             var days = (int)dayOfWeek - (int)(date.DayOfWeek);
-                days += 7;
+            days += 7;
             return date.AddDays(days);
+
+            //模範解答
+            //var nextWeek = date.AddDays(7);
+            //var days(int)dayOfWeek - (int)(date.DayOfWeek);
+            //return nextWeek.AddDays(days);
+
         }
+
+
 
     }
 }
