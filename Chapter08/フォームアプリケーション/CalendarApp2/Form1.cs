@@ -20,10 +20,13 @@ namespace CalendarApp2 {
             tbTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日") + str + DateTime.Now.ToString("HH時mm分ss秒");
         }
 
+
+        //一度だけ実行されるやつ
         public void Form1_Load(object sender, EventArgs e) {
             tbTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日(dddd) HH時mm分ss秒");
             tmTimeDisp.Start();
         }
+
 
         private void btDayCalc_Click(object sender, EventArgs e) {
             var now = DateTime.Now;
@@ -34,8 +37,8 @@ namespace CalendarApp2 {
             tbMessage.Text = "入力した日付から"+(now-dtp).Days+"日経過";
             //自分が書いたやつ
             //tbMessage.Text = distance.Days.ToString();
-            
         }
+
 
         private void btAge_Click(object sender, EventArgs e) {
             var now = DateTime.Now;
@@ -48,8 +51,8 @@ namespace CalendarApp2 {
             //模範解答
             //var age = GetAge(dtpDate.Value, DateTime.Now);
             tbMessage.Text = "あなたの年齢は"+ age + "歳です";
+                    }
 
-        }
 
         public static int GetAge(DateTime birthday,DateTime targetDay) {
             var age = targetDay.Year - birthday.Year;
@@ -59,6 +62,7 @@ namespace CalendarApp2 {
 
             return age;
         }
+
 
         //タイマーイベントハンドラ
         private void tmTimeDisp_Tick(object sender, EventArgs e) {
