@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,10 @@ namespace important {
             Console.WriteLine("-----");
             countSpace(text1);
             Console.WriteLine("-----");
-
-
-
+            printDayOfWeek();
+            Console.WriteLine("-----");
+            getGengo();
+            Console.WriteLine("-----");
         }
 
         #region 空白を数える
@@ -148,6 +150,29 @@ namespace important {
         }
         #endregion
 
+        #region 曜日を日本語にする
+        private static void printDayOfWeek() {
+            var date = new DateTime(2003,4,30);
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var dayOfWeek = culture.DateTimeFormat.GetDayName(date.DayOfWeek);
+
+            Console.WriteLine(dayOfWeek);
+        }
+        #endregion
+
+        #region 元号(平成とか)を出す
+        private static void getGengo() {
+            var date = new DateTime(2003, 4, 30);
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var era = culture.DateTimeFormat.Calendar.GetEra(date);
+            var eraName = culture.DateTimeFormat.GetEraName(era);
+
+            Console.WriteLine(eraName);
+            Console.WriteLine(date.ToString("gyy年M月d日",culture));
+        }
+        #endregion
     }
 }
 
