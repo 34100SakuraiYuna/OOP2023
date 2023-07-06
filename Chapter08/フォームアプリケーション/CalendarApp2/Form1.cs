@@ -17,7 +17,12 @@ namespace CalendarApp2 {
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
             var dayOfWeek = culture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             var str = "("+dayOfWeek+")　";
-            tbTimeNow.Text = DateTime.Now.ToString("yyyy/MM/dd") + str + DateTime.Now.ToString("HH:mm:ss");
+            tbTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日") + str + DateTime.Now.ToString("HH時mm分ss秒");
+        }
+
+        public void Form1_Load(object sender, EventArgs e) {
+            tbTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日(dddd) HH時mm分ss秒");
+            tmTimeDisp.Start();
         }
 
         private void btDayCalc_Click(object sender, EventArgs e) {
@@ -53,6 +58,11 @@ namespace CalendarApp2 {
             }
 
             return age;
+        }
+
+        //タイマーイベントハンドラ
+        private void tmTimeDisp_Tick(object sender, EventArgs e) {
+            tbTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日(dddd) HH時mm分ss秒");
         }
     }
 }

@@ -24,6 +24,7 @@ namespace CalendarApp2 {
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.btDayCalc = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -31,6 +32,7 @@ namespace CalendarApp2 {
             this.label2 = new System.Windows.Forms.Label();
             this.tbTimeNow = new System.Windows.Forms.TextBox();
             this.btAge = new System.Windows.Forms.Button();
+            this.tmTimeDisp = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btDayCalc
@@ -86,7 +88,7 @@ namespace CalendarApp2 {
             this.tbTimeNow.Location = new System.Drawing.Point(163, 308);
             this.tbTimeNow.Multiline = true;
             this.tbTimeNow.Name = "tbTimeNow";
-            this.tbTimeNow.Size = new System.Drawing.Size(360, 50);
+            this.tbTimeNow.Size = new System.Drawing.Size(397, 50);
             this.tbTimeNow.TabIndex = 11;
             // 
             // btAge
@@ -99,6 +101,11 @@ namespace CalendarApp2 {
             this.btAge.Text = "年齢";
             this.btAge.UseVisualStyleBackColor = true;
             this.btAge.Click += new System.EventHandler(this.btAge_Click);
+            // 
+            // tmTimeDisp
+            // 
+            this.tmTimeDisp.Interval = 1000;
+            this.tmTimeDisp.Tick += new System.EventHandler(this.tmTimeDisp_Tick);
             // 
             // Form1
             // 
@@ -114,6 +121,7 @@ namespace CalendarApp2 {
             this.Controls.Add(this.btDayCalc);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +136,7 @@ namespace CalendarApp2 {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbTimeNow;
         private System.Windows.Forms.Button btAge;
+        private System.Windows.Forms.Timer tmTimeDisp;
     }
 }
 
