@@ -35,7 +35,7 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
                 Maker = getSelectMaker(),
             };
-            //dgvCarReports.
+            CarReports.Add(carReport);
         }
 
 
