@@ -21,7 +21,7 @@ namespace CarReportSystem {
 
 
         private void Form1_Load(object sender, EventArgs e) {
-
+            dgvCarReports.Columns[5].Visible = false;
         }
 
 
@@ -40,24 +40,47 @@ namespace CarReportSystem {
 
 
         private CarReport.MakerGroup getSelectMaker() {
-            if(rbToyota.Checked == true) {
+            if(rbToyota.Checked) {
                 return CarReport.MakerGroup.トヨタ;
-            } else if(rbNissan.Checked == true) {
+            } else if(rbNissan.Checked) {
                 return CarReport.MakerGroup.日産;
-            } else if(rbHonda.Checked == true) {
+            } else if(rbHonda.Checked) {
                 return CarReport.MakerGroup.ホンダ;
-            } else if(rbSubaru.Checked == true) {
+            } else if(rbSubaru.Checked) {
                 return CarReport.MakerGroup.スバル;
-            } else if(rbSuzuki.Checked == true) {
+            } else if(rbSuzuki.Checked) {
                 return CarReport.MakerGroup.スズキ;
-            } else if(rbDaihatsu.Checked == true) {
+            } else if(rbDaihatsu.Checked) {
                 return CarReport.MakerGroup.ダイハツ;
-            } else if(rbImported.Checked == true) {
+            } else if(rbImported.Checked) {
                 return CarReport.MakerGroup.輸入車;
-            } else if(rbOther.Checked == true) {
-                return CarReport.MakerGroup.その他;
             } else {
-                return default;
+                return CarReport.MakerGroup.その他;
+            }
+        }
+
+
+        //別解
+        private CarReport.MakerGroup getSelectMaker2() {
+            foreach(var item in gbMaker.Controls) {
+                if(((RadioButton)item).Checked) {
+                    return (CarReport.MakerGroup)int.Parse(((RadioButton)item).Tag.ToString());
+                }
+            }
+            return CarReport.MakerGroup.その他;
+
+        }
+
+
+        private void btImageOpen_Click(object sender, EventArgs e) {
+            ofdImageFileOpen.ShowDialog();
+            pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+        }
+
+
+        private void btDeleteReport_Click(object sender, EventArgs e) {
+            foreach(DataGridViewRow row in dgvCarReports.SelectedRows) {
+                dgvCarReports.Rows.RemoveAt(row.Index);
             }
         }
     }
