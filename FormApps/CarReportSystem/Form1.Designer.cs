@@ -284,6 +284,7 @@ namespace CarReportSystem {
             this.dgvCarReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarReports.Size = new System.Drawing.Size(642, 164);
             this.dgvCarReports.TabIndex = 6;
+            this.dgvCarReports.Click += new System.EventHandler(this.dgvCarReports_Click);
             // 
             // label6
             // 
@@ -360,6 +361,7 @@ namespace CarReportSystem {
             this.btModifiReport.TabIndex = 10;
             this.btModifiReport.Text = "修正";
             this.btModifiReport.UseVisualStyleBackColor = false;
+            this.btModifiReport.Click += new System.EventHandler(this.btModifiReport_Click);
             // 
             // btDeleteReport
             // 
