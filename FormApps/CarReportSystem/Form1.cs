@@ -21,7 +21,8 @@ namespace CarReportSystem {
 
 
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReports.Columns[5].Visible = false;
+            dgvCarReports.Columns[5].Visible = false;   //dgvの画像を非表示
+            btModifiReport.Enabled = false;             //マスク処理(修正ボタンを押せなくする)
         }
 
 
@@ -39,6 +40,7 @@ namespace CarReportSystem {
         }
 
 
+        //選択されているメーカーを返却
         private CarReport.MakerGroup getSelectMaker() {
             if(rbToyota.Checked) {
                 return CarReport.MakerGroup.トヨタ;
@@ -60,7 +62,7 @@ namespace CarReportSystem {
         }
 
 
-        //別解
+        //別解 選択されているメーカーを返却
         private CarReport.MakerGroup getSelectMaker2() {
             foreach(var item in gbMaker.Controls) {
                 if(((RadioButton)item).Checked) {
@@ -85,46 +87,62 @@ namespace CarReportSystem {
         }
 
 
-        //dgvの変更
+        //dgvの修正
         private void btModifiReport_Click(object sender, EventArgs e) {
-            foreach(DataGridViewRow row in dgvCarReports.SelectedRows) {
-                int iRow = dgvCarReports.CurrentCell.RowIndex;
-            }
+            //if(dgvCarReports.Rows.;
 
+            //}
+            CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
+            CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
+            CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectMaker();
+            CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
+            CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
+            CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
         }
 
 
-        //
+        //レコードの選択
         private void dgvCarReports_Click(object sender, EventArgs e) {
             dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
             cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-            getSelectMaker3();
+            selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-            //pbCarImage.Image = (PictureBox)dgvCarReports.CurrentRow.Cells[5].Value;
-
+            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            dgvCarReports.Refresh();    //一覧更新
         }
 
 
-        private CarReport.MakerGroup getSelectMaker3() {
-            if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "トヨタ") {
-                return CarReport.MakerGroup.トヨタ;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "日産") {
-                return CarReport.MakerGroup.日産;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "ホンダ") {
-                return CarReport.MakerGroup.ホンダ;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "スバル") {
-                return CarReport.MakerGroup.スバル;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "スズキ") {
-                return CarReport.MakerGroup.スズキ;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "ダイハツ") {
-                return CarReport.MakerGroup.ダイハツ;
-            } else if(dgvCarReports.CurrentRow.Cells[2].Value.ToString() == "輸入車") {
-                return CarReport.MakerGroup.輸入車;
-            } else {
-                return CarReport.MakerGroup.その他;
+        //指定したメーカーのラジオボタンをセット
+        private void selectedMaker(CarReport.MakerGroup makerGroup) {
+            switch(makerGroup) {
+                case CarReport.MakerGroup.トヨタ:
+                    rbToyota.Checked = true;
+                    break;
+                case CarReport.MakerGroup.日産:
+                    rbNissan.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ホンダ:
+                    rbHonda.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スバル:
+                    rbSubaru.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スズキ:
+                    rbSuzuki.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ダイハツ:
+                    rbDaihatsu.Checked = true;
+                    break;
+                case CarReport.MakerGroup.輸入車:
+                    rbImported.Checked = true;
+                    break;
+                case CarReport.MakerGroup.その他:
+                    rbOther.Checked = true;
+                    break;
+                default:
+                    break;
             }
         }
-
     }
 }
