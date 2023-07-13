@@ -21,7 +21,8 @@ namespace CarReportSystem {
 
 
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReports.Columns[5].Visible = false;   //dgvの画像を非表示
+            //dgvの画像を非表示
+            dgvCarReports.Columns[5].Visible = false;
 
             ////マスク処理
             btModifiReport.Enabled = false;             
@@ -31,7 +32,7 @@ namespace CarReportSystem {
         }
 
 
-        //追加ボタンがクリックされた時のイベントハンドラ
+        //dgvの追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
             statusLabelDisp();
 
@@ -106,14 +107,14 @@ namespace CarReportSystem {
         }
 
 
-        //画像の追加
+        //画像の追加ボタン
         private void btImageOpen_Click(object sender, EventArgs e) {
             ofdImageFileOpen.ShowDialog();
             pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
         }
 
 
-        //dgvの削除
+        //dgvの削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
             if(dgvCarReports.RowCount <= 1) {
@@ -124,7 +125,7 @@ namespace CarReportSystem {
         }
 
 
-        //dgvの修正
+        //dgvの修正ボタン
         private void btModifiReport_Click(object sender, EventArgs e) {
             CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
             CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
@@ -180,6 +181,7 @@ namespace CarReportSystem {
         }
 
 
+        //入力内容のリセット
         public void clearCommand() {
             cbAuthor.Text = null;
             cbCarName.Text = null;
@@ -190,6 +192,7 @@ namespace CarReportSystem {
         }
 
 
+        //終了
         private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
         }
@@ -198,6 +201,12 @@ namespace CarReportSystem {
         //ステータスラベルのテキスト表示
         private void statusLabelDisp(string msg = "") {
             tsInfoText.Text = msg;
+        }
+
+
+        //画像の削除ボタン
+        private void btImageDelete_Click(object sender, EventArgs e) {
+            pbCarImage.Image = null;
         }
     }
 }
