@@ -24,6 +24,7 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;   //dgvの画像を非表示
             btModifiReport.Enabled = false;             //マスク処理(修正ボタンを押せなくする)
             btDeleteReport.Enabled = false;
+            tsInfoText.Text = "";
         }
 
 
@@ -37,13 +38,22 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
                 Maker = getSelectMaker(),
             };
-            if(cbAuthor.Text == "" || cbCarName.Text == "") {
-                //Console.WriteLine("記録者と車名がないと追加できません");
+
+            if(cbAuthor.Text == "" && cbCarName.Text == "") {
+                tsInfoText.Text = "記録者と車名を入力してください";
+            } else if(cbCarName.Text == "") {
+                tsInfoText.Text = "車名を入力してください";
+            } else if(cbAuthor.Text == "") {
+                tsInfoText.Text = "記録者を入力してください";
             } else {
                 CarReports.Add(carReport);
+                cbAuthor.Items.Add(cbAuthor.Text);
+                cbCarName.Items.Add(cbCarName.Text);
+
                 btModifiReport.Enabled = true;  //マスク処理(修正ボタンを押せるようにする)
                 btDeleteReport.Enabled = true;
                 clearCommand();
+                tsInfoText.Text = "";
             }
         }
 
