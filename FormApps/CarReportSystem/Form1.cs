@@ -23,6 +23,7 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;   //dgvの画像を非表示
             btModifiReport.Enabled = false;             //マスク処理(修正ボタンを押せなくする)
+            btDeleteReport.Enabled = false;
         }
 
 
@@ -36,7 +37,14 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
                 Maker = getSelectMaker(),
             };
-            CarReports.Add(carReport);
+            if(cbAuthor.Text == null || cbCarName.Text == null) {
+                Console.WriteLine("記録者と車名がないと追加できません");
+            } else {
+                CarReports.Add(carReport);
+                btModifiReport.Enabled = true;  //マスク処理(修正ボタンを押せるようにする)
+                btDeleteReport.Enabled = true;
+                clearCommand();
+            }
         }
 
 
@@ -89,9 +97,6 @@ namespace CarReportSystem {
 
         //dgvの修正
         private void btModifiReport_Click(object sender, EventArgs e) {
-            //if(dgvCarReports.Rows.;
-
-            //}
             CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
             CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
             CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectMaker();
@@ -143,6 +148,15 @@ namespace CarReportSystem {
                 default:
                     break;
             }
+        }
+
+
+        public void clearCommand() {
+            cbAuthor.Text = null;
+            cbCarName.Text = null;
+            tbReport.Text = null;
+            pbCarImage.Image = null;
+            rbToyota.Checked = true;
         }
     }
 }
