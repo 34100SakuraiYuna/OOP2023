@@ -37,8 +37,8 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
                 Maker = getSelectMaker(),
             };
-            if(cbAuthor.Text == null || cbCarName.Text == null) {
-                Console.WriteLine("記録者と車名がないと追加できません");
+            if(cbAuthor.Text == "" || cbCarName.Text == "") {
+                //Console.WriteLine("記録者と車名がないと追加できません");
             } else {
                 CarReports.Add(carReport);
                 btModifiReport.Enabled = true;  //マスク処理(修正ボタンを押せるようにする)
@@ -92,6 +92,11 @@ namespace CarReportSystem {
         //dgvの削除
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            if(dgvCarReports.RowCount <= 1) {
+                btModifiReport.Enabled = false;             //マスク処理(修正ボタンを押せなくする)
+                btDeleteReport.Enabled = false;
+            }
+            clearCommand();
         }
 
 
@@ -157,6 +162,12 @@ namespace CarReportSystem {
             tbReport.Text = null;
             pbCarImage.Image = null;
             rbToyota.Checked = true;
+            dgvCarReports.ClearSelection();
+        }
+
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
         }
     }
 }
