@@ -22,14 +22,30 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;   //dgvの画像を非表示
-            btModifiReport.Enabled = false;             //マスク処理(修正ボタンを押せなくする)
+
+            ////マスク処理
+            btModifiReport.Enabled = false;             
             btDeleteReport.Enabled = false;
-            tsInfoText.Text = "";
+
+            statusLabelDisp();
         }
 
 
         //追加ボタンがクリックされた時のイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
+            statusLabelDisp();
+
+            if(cbAuthor.Text == "" && cbCarName.Text == "") {
+                statusLabelDisp("記録者と車名を入力してください");
+                return;
+            } else if(cbCarName.Text == "") {
+                statusLabelDisp("車名を入力してください");
+                return;
+            } else if(cbAuthor.Text == "") {
+                statusLabelDisp("記録者を入力してください");
+                return;
+            }
+
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -38,23 +54,21 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
                 Maker = getSelectMaker(),
             };
+            CarReports.Add(carReport);
 
-            if(cbAuthor.Text == "" && cbCarName.Text == "") {
-                tsInfoText.Text = "記録者と車名を入力してください";
-            } else if(cbCarName.Text == "") {
-                tsInfoText.Text = "車名を入力してください";
-            } else if(cbAuthor.Text == "") {
-                tsInfoText.Text = "記録者を入力してください";
-            } else {
-                CarReports.Add(carReport);
+            //コンボボックスの履歴追加
+            if(!cbAuthor.Items.Contains(cbAuthor.Text)) {
                 cbAuthor.Items.Add(cbAuthor.Text);
-                cbCarName.Items.Add(cbCarName.Text);
-
-                btModifiReport.Enabled = true;  //マスク処理(修正ボタンを押せるようにする)
-                btDeleteReport.Enabled = true;
-                clearCommand();
-                tsInfoText.Text = "";
             }
+            if(!cbCarName.Items.Contains(cbCarName.Text)) {
+                cbCarName.Items.Add(cbCarName.Text);
+            }
+
+            //マスク処理解除
+            btModifiReport.Enabled = true;
+            btDeleteReport.Enabled = true;
+
+            clearCommand();
         }
 
 
@@ -118,6 +132,7 @@ namespace CarReportSystem {
             CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
             CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
             CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
+            dgvCarReports.Refresh();    //一覧更新
         }
 
 
@@ -129,7 +144,6 @@ namespace CarReportSystem {
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-            dgvCarReports.Refresh();    //一覧更新
         }
 
 
@@ -178,6 +192,12 @@ namespace CarReportSystem {
 
         private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
+        }
+
+
+        //ステータスラベルのテキスト表示
+        private void statusLabelDisp(string msg = "") {
+            tsInfoText.Text = msg;
         }
     }
 }
