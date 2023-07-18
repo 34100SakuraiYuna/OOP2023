@@ -62,6 +62,7 @@ namespace CarReportSystem {
         }
 
 
+        //コンボボックスの履歴追加
         private void addComboBox() {
             if(!cbAuthor.Items.Contains(cbAuthor.Text)) {
                 cbAuthor.Items.Add(cbAuthor.Text);
@@ -74,7 +75,9 @@ namespace CarReportSystem {
 
 
         private void removeComboBox() {
+
         }
+
 
 
         //選択されているメーカーを返却
@@ -228,6 +231,7 @@ namespace CarReportSystem {
         }
 
 
+        //マスク処理
         private void buttonMask() {
             btModifiReport.Enabled = true;
             btDeleteReport.Enabled = true;
@@ -243,6 +247,11 @@ namespace CarReportSystem {
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
             var vf = new VersionForm();
             vf.ShowDialog();    //モーダルダイアログとして表示
+        }
+
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+
         }
     }
 }

@@ -389,14 +389,14 @@ namespace CarReportSystem {
             this.btDeleteReport.UseVisualStyleBackColor = false;
             this.btDeleteReport.Click += new System.EventHandler(this.btDeleteReport_Click);
             // 
-            // menuStrip1
+            // menuItems
             // 
             this.menuItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
             this.編集EToolStripMenuItem,
             this.ヘルプHToolStripMenuItem});
             this.menuItems.Location = new System.Drawing.Point(0, 0);
-            this.menuItems.Name = "menuStrip1";
+            this.menuItems.Name = "menuItems";
             this.menuItems.Size = new System.Drawing.Size(822, 24);
             this.menuItems.TabIndex = 11;
             this.menuItems.Text = "menuStrip1";
@@ -456,8 +456,9 @@ namespace CarReportSystem {
             // 色設定ToolStripMenuItem
             // 
             this.色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            this.色設定ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.色設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.色設定ToolStripMenuItem.Text = "色設定...";
+            this.色設定ToolStripMenuItem.Click += new System.EventHandler(this.色設定ToolStripMenuItem_Click);
             // 
             // ヘルプHToolStripMenuItem
             // 
@@ -478,12 +479,12 @@ namespace CarReportSystem {
             // 
             this.ofdImageFileOpen.FileName = "openFileDialog1";
             // 
-            // statusStrip1
+            // statuDisp
             // 
             this.statuDisp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsInfoText});
             this.statuDisp.Location = new System.Drawing.Point(0, 553);
-            this.statuDisp.Name = "statusStrip1";
+            this.statuDisp.Name = "statuDisp";
             this.statuDisp.Size = new System.Drawing.Size(822, 22);
             this.statuDisp.TabIndex = 12;
             this.statuDisp.Text = "statusStrip1";
