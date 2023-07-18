@@ -12,7 +12,7 @@ namespace CarReportSystem {
     public partial class dgvCarReport : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
-
+        private uint mode;
 
         public dgvCarReport() {
             InitializeComponent();
@@ -116,9 +116,9 @@ namespace CarReportSystem {
 
         //画像の追加ボタン
         private void btImageOpen_Click(object sender, EventArgs e) {
-            ofdImageFileOpen.ShowDialog();
-            pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
-            
+            if(ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
+                pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            }
         }
 
 
@@ -156,13 +156,15 @@ namespace CarReportSystem {
 
         //レコードの選択
         private void dgvCarReports_Click(object sender, EventArgs e) {
-            dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-            cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-            selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-            cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-            tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-            buttonMask();
+            if(dgvCarReports.RowCount > 0) {
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+                buttonMask();
+            }
         }
 
 
@@ -255,6 +257,20 @@ namespace CarReportSystem {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 this.BackColor = cdColor.Color;
             }
+        }
+
+
+        //サイズ変更button
+        private void btScaleChange_Click(object sender, EventArgs e) {
+            mode++;
+            if(mode > 4) {
+                mode = 0;
+            }
+            pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
+
+            ////別解
+            //mode = mode < 4 ? ++mode : 0;
+            //pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
         }
     }
 }

@@ -66,6 +66,7 @@ namespace CarReportSystem {
             this.statuDisp = new System.Windows.Forms.StatusStrip();
             this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
+            this.btScaleChange = new System.Windows.Forms.Button();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -323,7 +324,7 @@ namespace CarReportSystem {
             // 
             this.btImageOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btImageOpen.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btImageOpen.Location = new System.Drawing.Point(551, 35);
+            this.btImageOpen.Location = new System.Drawing.Point(513, 38);
             this.btImageOpen.Name = "btImageOpen";
             this.btImageOpen.Size = new System.Drawing.Size(75, 24);
             this.btImageOpen.TabIndex = 7;
@@ -335,7 +336,7 @@ namespace CarReportSystem {
             // 
             this.btImageDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btImageDelete.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btImageDelete.Location = new System.Drawing.Point(704, 37);
+            this.btImageDelete.Location = new System.Drawing.Point(594, 37);
             this.btImageDelete.Name = "btImageDelete";
             this.btImageDelete.Size = new System.Drawing.Size(75, 24);
             this.btImageDelete.TabIndex = 8;
@@ -495,12 +496,24 @@ namespace CarReportSystem {
             this.tsInfoText.Size = new System.Drawing.Size(118, 17);
             this.tsInfoText.Text = "toolStripStatusLabel2";
             // 
+            // btScaleChange
+            // 
+            this.btScaleChange.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btScaleChange.Location = new System.Drawing.Point(675, 38);
+            this.btScaleChange.Name = "btScaleChange";
+            this.btScaleChange.Size = new System.Drawing.Size(104, 23);
+            this.btScaleChange.TabIndex = 13;
+            this.btScaleChange.Text = "サイズ変更";
+            this.btScaleChange.UseVisualStyleBackColor = true;
+            this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
+            // 
             // dgvCarReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(822, 575);
+            this.Controls.Add(this.btScaleChange);
             this.Controls.Add(this.statuDisp);
             this.Controls.Add(this.btDeleteReport);
             this.Controls.Add(this.btModifiReport);
@@ -584,6 +597,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
+        private System.Windows.Forms.Button btScaleChange;
     }
 }
 
