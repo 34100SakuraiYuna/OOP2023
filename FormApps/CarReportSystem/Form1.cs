@@ -56,15 +56,24 @@ namespace CarReportSystem {
             CarReports.Add(carReport);
 
             //コンボボックスの履歴追加
+            addComboBox();
+            clearCommand();
+            buttonMask();
+        }
+
+
+        private void addComboBox() {
             if(!cbAuthor.Items.Contains(cbAuthor.Text)) {
                 cbAuthor.Items.Add(cbAuthor.Text);
             }
+
             if(!cbCarName.Items.Contains(cbCarName.Text)) {
                 cbCarName.Items.Add(cbCarName.Text);
             }
+        }
 
-            buttonMask();
-            clearCommand();
+
+        private void removeComboBox() {
         }
 
 
@@ -106,6 +115,7 @@ namespace CarReportSystem {
         private void btImageOpen_Click(object sender, EventArgs e) {
             ofdImageFileOpen.ShowDialog();
             pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            
         }
 
 
@@ -135,6 +145,8 @@ namespace CarReportSystem {
             CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
             CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
             CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
+            cbAuthor.Items.Remove("");
+            addComboBox();
             dgvCarReports.Refresh();    //一覧更新
         }
 
@@ -147,6 +159,7 @@ namespace CarReportSystem {
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            buttonMask();
         }
 
 
@@ -185,11 +198,13 @@ namespace CarReportSystem {
 
         //入力内容のリセット
         public void clearCommand() {
+            dtpDate.Value = DateTime.Today;
             cbAuthor.Text = null;
             cbCarName.Text = null;
             tbReport.Text = null;
             pbCarImage.Image = null;
             rbToyota.Checked = true;
+
             dgvCarReports.ClearSelection();
             buttonMask();
         }
@@ -217,7 +232,7 @@ namespace CarReportSystem {
             btModifiReport.Enabled = true;
             btDeleteReport.Enabled = true;
 
-            if(dgvCarReports.RowCount < 1) {
+            if(dgvCarReports.RowCount < 1 || cbAuthor.Text == "") {
                 btModifiReport.Enabled = false;
                 btDeleteReport.Enabled = false;
             }
