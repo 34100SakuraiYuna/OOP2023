@@ -33,6 +33,13 @@ namespace CarReportSystem {
 
             buttonMask();
             statusLabelDisp();
+
+            //設定ファイルを逆シリアル化して背景設定
+            using(var reader = XmlReader.Create("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                settings = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
+            }
         }
 
 
@@ -237,6 +244,7 @@ namespace CarReportSystem {
         //画像の削除ボタン
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
+            buttonMask();
         }
 
 
@@ -250,9 +258,10 @@ namespace CarReportSystem {
                 btModifiReport.Enabled = false;
                 btDeleteReport.Enabled = false;
             }
-            //if(pbCarImage.Image = null) {
-            //    btScaleChange.Enabled = false;
-            //}
+
+            if(pbCarImage.Image == null) {
+                btScaleChange.Enabled = false;
+            }
         }
 
 
@@ -288,8 +297,8 @@ namespace CarReportSystem {
         }
 
 
+        //設定ファイルのシリアル化
         private void dgvCarReport_FormClosed(object sender, FormClosedEventArgs e) {
-            //設定ファイルのシリアル化
             using(var writer = XmlWriter.Create("Settings.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer,settings);
