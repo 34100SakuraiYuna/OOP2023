@@ -542,6 +542,7 @@ namespace CarReportSystem {
             this.MaximizeBox = false;
             this.Name = "dgvCarReport";
             this.Text = "カーレポート管理システム";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dgvCarReport_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();

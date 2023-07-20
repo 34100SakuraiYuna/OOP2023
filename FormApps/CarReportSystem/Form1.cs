@@ -7,12 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class dgvCarReport : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private uint mode;
+
+
+        //設定情報保存用オブジェクト
+        Settings settings = new Settings();
+
 
         public dgvCarReport() {
             InitializeComponent();
@@ -260,6 +267,7 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 this.BackColor = cdColor.Color;
+                settings.MainFormColor = cdColor.Color.ToArgb();
             }
         }
 
@@ -277,6 +285,15 @@ namespace CarReportSystem {
             ////別解
             //mode = mode < 4 ? ((mode == 1) ? 3 : ++mode) : 0;
             //pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
+        }
+
+
+        private void dgvCarReport_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化
+            using(var writer = XmlWriter.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer,settings);
+            }
         }
     }
 }
