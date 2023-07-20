@@ -79,7 +79,6 @@ namespace CarReportSystem {
         }
 
 
-
         //選択されているメーカーを返却
         private CarReport.MakerGroup getSelectMaker() {
             if(rbToyota.Checked) {
@@ -119,6 +118,7 @@ namespace CarReportSystem {
             if(ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
                 pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
             }
+            buttonMask();
         }
 
 
@@ -237,11 +237,15 @@ namespace CarReportSystem {
         private void buttonMask() {
             btModifiReport.Enabled = true;
             btDeleteReport.Enabled = true;
+            btScaleChange.Enabled = true;
 
             if(dgvCarReports.RowCount < 1 || cbAuthor.Text == "") {
                 btModifiReport.Enabled = false;
                 btDeleteReport.Enabled = false;
             }
+            //if(pbCarImage.Image = null) {
+            //    btScaleChange.Enabled = false;
+            //}
         }
 
 
@@ -263,13 +267,15 @@ namespace CarReportSystem {
         //サイズ変更button
         private void btScaleChange_Click(object sender, EventArgs e) {
             mode++;
-            if(mode > 4) {
+            if(mode == 1) {
+                mode = 3;
+            }else if(mode > 4) {
                 mode = 0;
             }
             pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
 
             ////別解
-            //mode = mode < 4 ? ++mode : 0;
+            //mode = mode < 4 ? ((mode == 1) ? 3 : ++mode) : 0;
             //pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
         }
     }
