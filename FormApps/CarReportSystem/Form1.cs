@@ -318,10 +318,25 @@ namespace CarReportSystem {
             tsTimeDisp.ForeColor = Color.Black;
         }
 
-
         //1秒ごとに行うやつ
         private void tmTimeUpdate_Tick(object sender, EventArgs e) {
             nowTime();
+        }
+
+
+        //保存ボタン
+        private void 保存LToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+
+            }
+        }
+
+
+        //開くボタン
+        private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
+
+            }
         }
     }
 }
