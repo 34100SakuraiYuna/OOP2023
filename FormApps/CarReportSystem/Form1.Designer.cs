@@ -24,6 +24,7 @@ namespace CarReportSystem {
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,9 +65,11 @@ namespace CarReportSystem {
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdImageFileOpen = new System.Windows.Forms.OpenFileDialog();
             this.statuDisp = new System.Windows.Forms.StatusStrip();
-            this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsTimeDisp = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
             this.btScaleChange = new System.Windows.Forms.Button();
+            this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmTimeUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -104,7 +107,7 @@ namespace CarReportSystem {
             // 
             // cbAuthor
             // 
-            this.cbAuthor.BackColor = System.Drawing.SystemColors.Control;
+            this.cbAuthor.BackColor = System.Drawing.Color.White;
             this.cbAuthor.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbAuthor.FormattingEnabled = true;
             this.cbAuthor.Location = new System.Drawing.Point(137, 77);
@@ -264,7 +267,7 @@ namespace CarReportSystem {
             // 
             // tbReport
             // 
-            this.tbReport.BackColor = System.Drawing.SystemColors.Control;
+            this.tbReport.BackColor = System.Drawing.Color.White;
             this.tbReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbReport.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbReport.Location = new System.Drawing.Point(137, 259);
@@ -275,7 +278,7 @@ namespace CarReportSystem {
             // 
             // cbCarName
             // 
-            this.cbCarName.BackColor = System.Drawing.SystemColors.Control;
+            this.cbCarName.BackColor = System.Drawing.Color.White;
             this.cbCarName.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbCarName.FormattingEnabled = true;
             this.cbCarName.Location = new System.Drawing.Point(137, 216);
@@ -289,7 +292,7 @@ namespace CarReportSystem {
             this.dgvCarReports.AllowUserToDeleteRows = false;
             this.dgvCarReports.AllowUserToResizeColumns = false;
             this.dgvCarReports.AllowUserToResizeRows = false;
-            this.dgvCarReports.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvCarReports.BackgroundColor = System.Drawing.Color.White;
             this.dgvCarReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarReports.Location = new System.Drawing.Point(137, 343);
             this.dgvCarReports.MultiSelect = false;
@@ -348,7 +351,7 @@ namespace CarReportSystem {
             // 
             // pbCarImage
             // 
-            this.pbCarImage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbCarImage.BackColor = System.Drawing.Color.White;
             this.pbCarImage.Location = new System.Drawing.Point(460, 77);
             this.pbCarImage.Name = "pbCarImage";
             this.pbCarImage.Size = new System.Drawing.Size(319, 163);
@@ -485,18 +488,19 @@ namespace CarReportSystem {
             // statuDisp
             // 
             this.statuDisp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsTimeDisp,
             this.tsInfoText});
             this.statuDisp.Location = new System.Drawing.Point(0, 553);
             this.statuDisp.Name = "statuDisp";
             this.statuDisp.Size = new System.Drawing.Size(822, 22);
             this.statuDisp.TabIndex = 12;
-            this.statuDisp.Text = "statusStrip1";
+            this.statuDisp.Text = "時刻表示";
             // 
-            // tsInfoText
+            // tsTimeDisp
             // 
-            this.tsInfoText.Name = "tsInfoText";
-            this.tsInfoText.Size = new System.Drawing.Size(118, 17);
-            this.tsInfoText.Text = "toolStripStatusLabel2";
+            this.tsTimeDisp.Name = "tsTimeDisp";
+            this.tsTimeDisp.Size = new System.Drawing.Size(55, 17);
+            this.tsTimeDisp.Text = "時刻表示";
             // 
             // btScaleChange
             // 
@@ -509,6 +513,16 @@ namespace CarReportSystem {
             this.btScaleChange.Text = "サイズ変更";
             this.btScaleChange.UseVisualStyleBackColor = false;
             this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
+            // 
+            // tsInfoText
+            // 
+            this.tsInfoText.Name = "tsInfoText";
+            this.tsInfoText.Size = new System.Drawing.Size(82, 17);
+            this.tsInfoText.Text = "インフォメーション";
+            // 
+            // tmTimeUpdate
+            // 
+            this.tmTimeUpdate.Tick += new System.EventHandler(this.tmTimeUpdate_Tick);
             // 
             // dgvCarReport
             // 
@@ -595,13 +609,15 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.OpenFileDialog ofdImageFileOpen;
         private System.Windows.Forms.StatusStrip statuDisp;
-        private System.Windows.Forms.ToolStripStatusLabel tsInfoText;
+        private System.Windows.Forms.ToolStripStatusLabel tsTimeDisp;
         private System.Windows.Forms.ToolStripMenuItem 編集EToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 色設定ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
         private System.Windows.Forms.Button btScaleChange;
+        private System.Windows.Forms.ToolStripStatusLabel tsInfoText;
+        private System.Windows.Forms.Timer tmTimeUpdate;
     }
 }
 

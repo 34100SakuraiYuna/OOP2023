@@ -30,9 +30,11 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             //dgvの画像を非表示
             dgvCarReports.Columns[5].Visible = false;
-
+            
             buttonMask();
-            statusLabelDisp();
+            statusLabelDisp("");
+            nowTime();
+            tmTimeUpdate.Start();
 
             //設定ファイルを逆シリアル化して背景設定
             using(var reader = XmlReader.Create("settings.xml")) {
@@ -235,12 +237,6 @@ namespace CarReportSystem {
         }
 
 
-        //ステータスラベルのテキスト表示
-        private void statusLabelDisp(string msg = "") {
-            tsInfoText.Text = msg;
-        }
-
-
         //画像の削除ボタン
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
@@ -303,6 +299,29 @@ namespace CarReportSystem {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer,settings);
             }
+        }
+
+
+        //ステータスラベルのテキスト表示
+        private void statusLabelDisp(string msg = "") {
+            tsInfoText.Text = msg;
+            tsInfoText.BackColor = Color.White;
+            tsInfoText.ForeColor = Color.Red;
+        }
+
+
+        //現在時刻の表示
+        private void nowTime() {
+            var now = DateTime.Now;
+            tsTimeDisp.Text = now.ToString("yyyy年MM月dd日 HH時mm分ss秒");
+            tsTimeDisp.BackColor = Color.White;
+            tsTimeDisp.ForeColor = Color.Black;
+        }
+
+
+        //1秒ごとに行うやつ
+        private void tmTimeUpdate_Tick(object sender, EventArgs e) {
+            nowTime();
         }
     }
 }
