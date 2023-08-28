@@ -358,12 +358,17 @@ namespace CarReportSystem {
                         dgvCarReports.DataSource = CarReports;
 
                         clearCommand();
+                        dgvCarReports.Columns[5].Visible = false;
 
-                        for(int i = 0; i < 2; i++) {
-                            cbAuthor.Items.Add(CarReports[i].Author);
-                            cbCarName.Items.Add(CarReports[i].CarName);
+                        for(int i = 0; i < CarReports.Count; i++) {
+                            if(!cbAuthor.Items.Contains(CarReports[i].Author)) {
+                                cbAuthor.Items.Add(CarReports[i].Author);
+                            }
+
+                            if(!cbCarName.Items.Contains(CarReports[i].CarName)) {
+                                cbCarName.Items.Add(CarReports[i].CarName);
+                            }
                         }
-                        
                     }
                 } catch(Exception ex) {
                     MessageBox.Show(ex.Message);
