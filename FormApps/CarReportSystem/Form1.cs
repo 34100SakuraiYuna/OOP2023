@@ -77,25 +77,28 @@ namespace CarReportSystem {
             CarReports.Add(carReport);
 
             //コンボボックスの履歴追加
-            addComboBox();
+            addComboBox(cbAuthor.Text, cbCarName.Text);
             clearCommand();
             buttonMask();
         }
 
 
         //コンボボックスの履歴追加
-        private void addComboBox() {
-            if(!cbAuthor.Items.Contains(cbAuthor.Text)) {
-                cbAuthor.Items.Add(cbAuthor.Text);
+        private void addComboBox(string author,string carName) {
+            if(!cbAuthor.Items.Contains(author)) {
+                cbAuthor.Items.Add(author);
             }
 
-            if(!cbCarName.Items.Contains(cbCarName.Text)) {
-                cbCarName.Items.Add(cbCarName.Text);
+            if(!cbCarName.Items.Contains(carName)) {
+                cbCarName.Items.Add(carName);
             }
         }
 
 
-        private void removeComboBox() {
+        //コンボボックスの履歴全削除
+        private void clearComboBox() {
+            cbAuthor.Items.Clear();
+            cbCarName.Items.Clear();
 
         }
 
@@ -170,7 +173,7 @@ namespace CarReportSystem {
             CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
             CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
             cbAuthor.Items.Remove("");
-            addComboBox();
+            addComboBox(cbAuthor.Text, cbCarName.Text);
             dgvCarReports.Refresh();    //一覧更新
         }
 
@@ -358,16 +361,11 @@ namespace CarReportSystem {
                         dgvCarReports.DataSource = CarReports;
 
                         clearCommand();
+                        clearComboBox();
                         dgvCarReports.Columns[5].Visible = false;
 
-                        for(int i = 0; i < CarReports.Count; i++) {
-                            if(!cbAuthor.Items.Contains(CarReports[i].Author)) {
-                                cbAuthor.Items.Add(CarReports[i].Author);
-                            }
-
-                            if(!cbCarName.Items.Contains(CarReports[i].CarName)) {
-                                cbCarName.Items.Add(CarReports[i].CarName);
-                            }
+                        foreach(var carReport in CarReports) {
+                            addComboBox(carReport.Author,carReport.CarName);
                         }
                     }
                 } catch(Exception ex) {
