@@ -38,6 +38,9 @@ namespace CarReportSystem {
             nowTime();
             tmTimeUpdate.Start();
 
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.GhostWhite;
+
             try {
                 //設定ファイルを逆シリアル化して背景設定
                 using(var reader = XmlReader.Create("settings.xml")) {
@@ -96,9 +99,17 @@ namespace CarReportSystem {
 
 
         //コンボボックスの履歴全削除
-        private void clearComboBox() {
+        private void allClearComboBox() {
             cbAuthor.Items.Clear();
             cbCarName.Items.Clear();
+
+        }
+        
+        
+        //コンボボックスの履歴削除(1つ)
+        private void oneRemoveComboBox(string author,string carName) {
+            cbAuthor.Items.Remove(author);
+            cbCarName.Items.Remove(carName);
 
         }
 
@@ -148,6 +159,7 @@ namespace CarReportSystem {
 
         //dgvの削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
+            //oneRemoveComboBox(dgvCarReports.CurrentRow.ToString(), dgvCarReports.CurrentRow.ToString());
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
             buttonMask();
             clearCommand();
@@ -178,17 +190,17 @@ namespace CarReportSystem {
         }
 
 
-        //レコードの選択
+        //レコードの選択(古い方)
         private void dgvCarReports_Click(object sender, EventArgs e) {
-            if(dgvCarReports.RowCount > 0) {
-                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-                buttonMask();
-            }
+            //if(dgvCarReports.RowCount > 0) {
+            //    dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+            //    cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+            //    selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+            //    cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+            //    tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+            //    pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            //    buttonMask();
+            //}
         }
 
 
@@ -361,7 +373,7 @@ namespace CarReportSystem {
                         dgvCarReports.DataSource = CarReports;
 
                         clearCommand();
-                        clearComboBox();
+                        allClearComboBox();
                         dgvCarReports.Columns[5].Visible = false;
 
                         foreach(var carReport in CarReports) {
@@ -374,6 +386,20 @@ namespace CarReportSystem {
             }
 
 
+        }
+
+
+        //レコードの選択
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if(dgvCarReports.RowCount > 0) {
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+                buttonMask();
+            }
         }
     }
 }
