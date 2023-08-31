@@ -32,14 +32,12 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             //dgvの画像を非表示
             dgvCarReports.Columns[5].Visible = false;
-            
+
             buttonMask();
             statusLabelDisp("");
             nowTime();
             tmTimeUpdate.Start();
-
-            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
-            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.GhostWhite;
+            rowsColor();
 
             try {
                 //設定ファイルを逆シリアル化して背景設定
@@ -51,6 +49,13 @@ namespace CarReportSystem {
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        //行に色を付ける
+        private void rowsColor() {
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.GhostWhite;
         }
 
 
@@ -201,6 +206,20 @@ namespace CarReportSystem {
             //    pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
             //    buttonMask();
             //}
+        }
+        
+        
+        //レコードの選択(新しい方)
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if(dgvCarReports.RowCount > 0) {
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+                buttonMask();
+            }
         }
 
 
@@ -386,20 +405,6 @@ namespace CarReportSystem {
             }
 
 
-        }
-
-
-        //レコードの選択
-        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
-            if(dgvCarReports.RowCount > 0) {
-                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-                buttonMask();
-            }
         }
     }
 }
