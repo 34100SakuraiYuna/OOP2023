@@ -25,7 +25,7 @@ namespace CarReportSystem {
 
         public dgvCarReport() {
             InitializeComponent();
-            dgvCarReports.DataSource = CarReports;
+            //dgvCarReports.DataSource = CarReports;
         }
 
 
@@ -212,12 +212,12 @@ namespace CarReportSystem {
         //レコードの選択(新しい方)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
             if(dgvCarReports.RowCount > 0) {
-                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
+                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[3].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[6].Value;
                 buttonMask();
             }
         }
@@ -405,6 +405,22 @@ namespace CarReportSystem {
             }
 
 
+        }
+
+
+        //
+        private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
+
+        }
+
+
+        //接続ボタン
+        private void btConnection_Click(object sender, EventArgs e) {
+            //データを 'infosys202311DataSet.CarReportTable' テーブルに読み込む
+            this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
         }
     }
 }
