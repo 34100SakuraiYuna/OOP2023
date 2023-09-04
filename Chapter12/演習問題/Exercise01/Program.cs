@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -51,8 +52,23 @@ namespace Exercise01 {
 
 
         private static void Exercise1_2(string v) {
+            var employees = new Employee[] {
+                new Employee {
+                    Id = 12345,
+                    Name = "Sam",
+                    HireDate = DateTime.Today,
+                },
+                new Employee {
+                    Id = 67890,
+                    Name = "Tom",
+                    HireDate = DateTime.Today,
+                }
+            };
 
-
+            using(var writer = XmlWriter.Create(v)) {
+                var serializer = new DataContractSerializer(employees.GetType());
+                serializer.WriteObject(writer, employees);
+            }
         }
 
         private static void Exercise1_3(string v) {
