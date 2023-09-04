@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -25,7 +26,7 @@ namespace Exercise01 {
             Exercise1_4("employees.json");
 
             // これは確認用
-            //Console.WriteLine(File.ReadAllText("employees.json"));
+            Console.WriteLine(File.ReadAllText("employees.json"));
         }
 
 
@@ -71,13 +72,37 @@ namespace Exercise01 {
             }
         }
 
+
         private static void Exercise1_3(string v) {
+            using(var reader = XmlReader.Create(v)) {
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var employees = serializer.ReadObject(reader) as Employee[];
+                foreach(var emoloyee in employees) {
+                    Console.WriteLine(emoloyee);
+                }
+            }
 
 
         }
 
         private static void Exercise1_4(string v) {
+            var employees = new Employee[] {
+                new Employee {
+                    Id = 12345,
+                    Name = "Sam",
+                    HireDate = DateTime.Today,
+                },
+                new Employee {
+                    Id = 67890,
+                    Name = "Tom",
+                    HireDate = DateTime.Today,
+                }
+            };
 
+            using(var stream = new FileStream(v,FileMode.Create,FileAccess.Write)) {
+                var serializer = new DataContractJsonSerializer(employees.GetType());
+                serializer.WriteObject(stream,employees);
+            }
 
         }
     }
