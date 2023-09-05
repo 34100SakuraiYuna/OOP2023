@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
-            object novelist = Exercise2_1("sample.xml");
+            var novelist = Exercise2_1("sample.xml");
             Exercise2_2(novelist, "novelist.json");
 
             // これは確認のためのコード 12.2.1
@@ -28,7 +28,7 @@ namespace Exercise02 {
             Console.WriteLine();
         }
 
-        private static object Exercise2_1(string v) {
+        private static Novelist Exercise2_1(string v) {
             Novelist novelist;
             using(var reader = XmlReader.Create(new StringReader(v))) {
                 var serializer = new XmlSerializer(typeof(Novelist));

@@ -66,7 +66,13 @@ namespace Exercise01 {
                 }
             };
 
-            using(var writer = XmlWriter.Create(v)) {
+            var settings = new XmlWriterSettings {
+                Encoding = new System.Text.UTF8Encoding(false),
+                Indent = true,
+                IndentChars = " ",
+            };
+
+            using(var writer = XmlWriter.Create(v,settings)) {
                 var serializer = new DataContractSerializer(employees.GetType());
                 serializer.WriteObject(writer, employees);
             }
@@ -78,19 +84,18 @@ namespace Exercise01 {
                 var serializer = new DataContractSerializer(typeof(Employee[]));
                 var employees = serializer.ReadObject(reader) as Employee[];
                 foreach(var emoloyee in employees) {
-                    Console.WriteLine(emoloyee);
+                    Console.WriteLine("{0} {1} {2}",emoloyee.Id,emoloyee.Name,emoloyee.HireDate);
                 }
             }
-
-
         }
+
 
         private static void Exercise1_4(string v) {
             var employees = new Employee[] {
                 new Employee {
                     Id = 12345,
                     Name = "Sam",
-                    HireDate = DateTime.Today,
+                    HireDate = new DateTime(2023,1,4)
                 },
                 new Employee {
                     Id = 67890,
