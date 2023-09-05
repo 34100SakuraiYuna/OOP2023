@@ -20,7 +20,7 @@ namespace CarReportSystem {
 
 
         //設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstamce();
 
 
         public dgvCarReport() {
