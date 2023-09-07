@@ -173,25 +173,29 @@ namespace CarReportSystem {
 
         //dgvの修正ボタン
         private void btModifiReport_Click(object sender, EventArgs e) {
-            if(cbAuthor.Text == "" && cbCarName.Text == "") {
-                statusLabelDisp("記録者と車名を入力してください");
-                return;
-            } else if(cbCarName.Text == "") {
-                statusLabelDisp("車名を入力してください");
-                return;
-            } else if(cbAuthor.Text == "") {
-                statusLabelDisp("記録者を入力してください");
-                return;
-            }
-            CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
-            CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectMaker();
-            CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
-            cbAuthor.Items.Remove("");
-            addComboBox(cbAuthor.Text, cbCarName.Text);
-            dgvCarReports.Refresh();    //一覧更新
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
+
+            //if(cbAuthor.Text == "" && cbCarName.Text == "") {
+            //    statusLabelDisp("記録者と車名を入力してください");
+            //    return;
+            //} else if(cbCarName.Text == "") {
+            //    statusLabelDisp("車名を入力してください");
+            //    return;
+            //} else if(cbAuthor.Text == "") {
+            //    statusLabelDisp("記録者を入力してください");
+            //    return;
+            //}
+            //CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
+            //CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
+            //CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectMaker();
+            //CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
+            //CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
+            //CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
+            //cbAuthor.Items.Remove("");
+            //addComboBox(cbAuthor.Text, cbCarName.Text);
+            //dgvCarReports.Refresh();    //一覧更新
         }
 
 
@@ -211,19 +215,20 @@ namespace CarReportSystem {
         
         //レコードの選択(新しい方)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+
             if(dgvCarReports.RowCount > 0) {
                 dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
                 cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
-                selectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[3].Value);
+                selectedMaker2(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
                 cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[6].Value;
+                //pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[6].Value;
                 buttonMask();
             }
         }
 
 
-        //指定したメーカーのラジオボタンをセット
+        //指定したメーカーのラジオボタンをセット(列挙型)
         private void selectedMaker(CarReport.MakerGroup makerGroup) {
             switch(makerGroup) {
                 case CarReport.MakerGroup.トヨタ:
@@ -254,6 +259,40 @@ namespace CarReportSystem {
                     break;
             }
         }
+
+
+        //指定したメーカーのラジオボタンをセット(string型)
+        private void selectedMaker2(string makerGroup) {
+            switch(makerGroup) {
+                case "トヨタ":
+                    rbToyota.Checked = true;
+                    break;
+                case "日産":
+                    rbNissan.Checked = true;
+                    break;
+                case "ホンダ":
+                    rbHonda.Checked = true;
+                    break;
+                case "スバル":
+                    rbSubaru.Checked = true;
+                    break;
+                case "スズキ":
+                    rbSuzuki.Checked = true;
+                    break;
+                case "ダイハツ":
+                    rbDaihatsu.Checked = true;
+                    break;
+                case "輸入車":
+                    rbImported.Checked = true;
+                    break;
+                case "その他":
+                    rbOther.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
 
         //入力内容のリセット
@@ -413,7 +452,6 @@ namespace CarReportSystem {
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
-
         }
 
 
@@ -422,5 +460,8 @@ namespace CarReportSystem {
             //データを 'infosys202311DataSet.CarReportTable' テーブルに読み込む
             this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
         }
+
+
+
     }
 }
