@@ -11,15 +11,17 @@ namespace Exercise02 {
     [DataContract]
     public class Novelist {
 
-        [XmlElement(ElementName ="name")]
+        [XmlElement("name")]
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        [XmlElement(ElementName = "birth")]
+        [XmlElement("birth")]
         [DataMember(Name = "birth")]
         public DateTime Birth { get; set; }
 
-        [XmlElement(ElementName = "masterpieces")]
+        //[XmlElement(ElementName = "masterpieces")]
+        [XmlArray("masterpieces")]
+        [XmlArrayItem("title",typeof(string))]
         [DataMember(Name = "masterpieces")]
         public string[] Masterpieces { get; set; }
     }

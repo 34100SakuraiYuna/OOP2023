@@ -23,30 +23,30 @@ namespace Exercise02 {
             }
             Console.WriteLine();
 
-            // これは確認のためのコード 12.2.2
+            //これは確認のためのコード 12.2.2
             Console.WriteLine(File.ReadAllText("novelist.json"));
             Console.WriteLine();
         }
 
-        private static Novelist Exercise2_1(string v) {
-            Novelist novelist;
-            using(var reader = XmlReader.Create(new StringReader(v))) {
-                var serializer = new XmlSerializer(typeof(Novelist));
-                novelist = serializer.Deserialize(reader) as Novelist;
-            }
-            return novelist;
 
+        private static Novelist Exercise2_1(string v) {
+            using(var reader = XmlReader.Create(v)) {
+                var serializer = new XmlSerializer(typeof(Novelist));
+                var novelist = (Novelist)serializer.Deserialize(reader);
+
+                return novelist;
+            }
         }
+
 
         private static void Exercise2_2(object novelist, string v) {
             using(var stream = new FileStream(v, FileMode.Create, FileAccess.Write)) {
-                var serializer = new DataContractJsonSerializer(typeof(Novelist));
+                var serializer = new DataContractJsonSerializer(novelist.GetType(),
+                    new DataContractJsonSerializerSettings {
+                        DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                    });
                 serializer.WriteObject(stream, novelist);
             }
-
-            var settings = new DataContractJsonSerializerSettings {
-                DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-            };
         }
     }
 }
