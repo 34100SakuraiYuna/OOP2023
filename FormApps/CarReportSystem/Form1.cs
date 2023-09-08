@@ -66,18 +66,17 @@ namespace CarReportSystem {
                 return;
             }
 
+            DataRow newRow = infosys202311DataSet.CarReportTable.NewRow();
+            newRow[1] = dtpDate.Value;
+            newRow[2] = cbAuthor.Text;
+            newRow[3] = getSelectMaker2();
+            newRow[4] = cbCarName.Text;
+            newRow[5] = tbReport.Text;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
 
-            CarReport carReport = new CarReport {
-                Date = dtpDate.Value,
-                Author = cbAuthor.Text,
-                CarName = cbCarName.Text,
-                Report = tbReport.Text,
-                CarImage = pbCarImage.Image,
-                Maker = getSelectMaker(),
-            };
-            CarReports.Add(carReport);
+            infosys202311DataSet.CarReportTable.Rows.Add(newRow);
+            this.carReportTableTableAdapter.Update(infosys202311DataSet.CarReportTable);
 
-            //コンボボックスの履歴追加
             addComboBox(cbAuthor.Text, cbCarName.Text);
             clearCommand();
             buttonMask();
@@ -238,6 +237,7 @@ namespace CarReportSystem {
             buttonMask();
         }
 
+
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b) {
             ImageConverter imgconv = new ImageConverter();
@@ -318,7 +318,6 @@ namespace CarReportSystem {
                     break;
             }
         }
-
 
 
         //入力内容のリセット
