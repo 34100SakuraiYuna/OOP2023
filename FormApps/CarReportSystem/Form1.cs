@@ -156,10 +156,11 @@ namespace CarReportSystem {
 
         //dgvの削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            //oneRemoveComboBox(dgvCarReports.CurrentRow.ToString(), dgvCarReports.CurrentRow.ToString());
-            CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
             buttonMask();
             clearCommand();
+
+            carReportTableTableAdapter.Update(infosys202311DataSet.CarReportTable);
         }
 
 
@@ -472,7 +473,7 @@ namespace CarReportSystem {
         }
 
 
-        //
+        //DBの更新？
         private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
