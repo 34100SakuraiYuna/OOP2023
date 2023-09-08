@@ -31,7 +31,7 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             //dgvの画像を非表示
-            dgvCarReports.Columns[5].Visible = false;
+            dgvCarReports.Columns[6].Visible = false;
 
             buttonMask();
             statusLabelDisp("");
@@ -61,18 +61,11 @@ namespace CarReportSystem {
 
         //dgvの追加ボタン
         private void btAddReport_Click(object sender, EventArgs e) {
-            statusLabelDisp();
-
-            if(cbAuthor.Text == "" && cbCarName.Text == "") {
-                statusLabelDisp("記録者と車名を入力してください");
-                return;
-            } else if(cbCarName.Text == "") {
-                statusLabelDisp("車名を入力してください");
-                return;
-            } else if(cbAuthor.Text == "") {
-                statusLabelDisp("記録者を入力してください");
+            text();
+            if(tsInfoText.Text != "") {
                 return;
             }
+
 
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value,
@@ -171,31 +164,43 @@ namespace CarReportSystem {
         }
 
 
+        //テキスト(注意文など)表示
+        private void text() {
+            statusLabelDisp("");
+            if(cbAuthor.Text == "" && cbCarName.Text == "") {
+                statusLabelDisp("記録者と車名を入力してください");
+                return;
+            } else if(cbCarName.Text == "") {
+                statusLabelDisp("車名を入力してください");
+                return;
+            } else if(cbAuthor.Text == "") {
+                statusLabelDisp("記録者を入力してください");
+                return;
+            }
+        }
+
+
         //dgvの修正ボタン
         private void btModifiReport_Click(object sender, EventArgs e) {
+            text();
+            if(tsInfoText.Text != "") {
+                return;
+            }
+
+            dgvCarReports.CurrentRow.Cells[1].Value = dtpDate.Value;
+            dgvCarReports.CurrentRow.Cells[2].Value = cbAuthor.Text;
+            dgvCarReports.CurrentRow.Cells[3].Value = getSelectMaker2();
+            dgvCarReports.CurrentRow.Cells[4].Value = cbCarName.Text;
+            dgvCarReports.CurrentRow.Cells[5].Value = tbReport.Text;
+            dgvCarReports.CurrentRow.Cells[6].Value = pbCarImage.Image;
+
+            cbAuthor.Items.Remove("");
+            addComboBox(cbAuthor.Text, cbCarName.Text);
+            dgvCarReports.Refresh();    //一覧更新
+
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
-
-            //if(cbAuthor.Text == "" && cbCarName.Text == "") {
-            //    statusLabelDisp("記録者と車名を入力してください");
-            //    return;
-            //} else if(cbCarName.Text == "") {
-            //    statusLabelDisp("車名を入力してください");
-            //    return;
-            //} else if(cbAuthor.Text == "") {
-            //    statusLabelDisp("記録者を入力してください");
-            //    return;
-            //}
-            //CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
-            //CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
-            //CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectMaker();
-            //CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
-            //CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
-            //CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
-            //cbAuthor.Items.Remove("");
-            //addComboBox(cbAuthor.Text, cbCarName.Text);
-            //dgvCarReports.Refresh();    //一覧更新
         }
 
 
@@ -215,16 +220,37 @@ namespace CarReportSystem {
         
         //レコードの選択(新しい方)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
-
             if(dgvCarReports.RowCount > 0) {
                 dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
                 cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
                 selectedMaker2(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
                 cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
-                //pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[6].Value;
-                buttonMask();
+                if(!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
+                    pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
+                } else {
+                    pbCarImage.Image = null;
+                }
+                //別解
+                //pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) ?
+                //    ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
             }
+            buttonMask();
+        }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] b) {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(b);
+            return img;
+        }
+
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img) {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return b;
         }
 
 
@@ -432,7 +458,7 @@ namespace CarReportSystem {
 
                         clearCommand();
                         allClearComboBox();
-                        dgvCarReports.Columns[5].Visible = false;
+                        dgvCarReports.Columns[6].Visible = false;
 
                         foreach(var carReport in CarReports) {
                             addComboBox(carReport.Author,carReport.CarName);
@@ -459,6 +485,7 @@ namespace CarReportSystem {
         private void btConnection_Click(object sender, EventArgs e) {
             //データを 'infosys202311DataSet.CarReportTable' テーブルに読み込む
             this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
+            dgvCarReports.ClearSelection();
         }
 
 
