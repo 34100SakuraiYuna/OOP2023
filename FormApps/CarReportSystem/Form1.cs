@@ -15,17 +15,13 @@ using System.Xml.Serialization;
 namespace CarReportSystem {
     public partial class dgvCarReport : Form {
         //管理用データ
-        BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private uint mode;
-
 
         //設定情報保存用オブジェクト
         Settings settings = Settings.getInstamce();
 
-
         public dgvCarReport() {
             InitializeComponent();
-            //dgvCarReports.DataSource = CarReports;
         }
 
 
@@ -431,45 +427,13 @@ namespace CarReportSystem {
         }
 
 
-        //保存ボタン
-        private void 保存LToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式でシリアル化
-                    var bf = new BinaryFormatter();
-                    using(FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, CarReports);
-                    }
-                } catch(Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
+        //接続ボタン
+        private void 接続SToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
+            foreach(var carReport in infosys202311DataSet.CarReportTable) {
+                addComboBox(carReport.Author, carReport.CarName);
             }
-        }
-
-
-        //開くボタン
-        private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //逆シリアル化でバイナリ形式を取り込む
-                    var bf = new BinaryFormatter();
-                    using(FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
-                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvCarReports.DataSource = null;
-                        dgvCarReports.DataSource = CarReports;
-
-                        clearCommand();
-                        allClearComboBox();
-                        dgvCarReports.Columns[6].Visible = false;
-
-                        foreach(var carReport in CarReports) {
-                            addComboBox(carReport.Author,carReport.CarName);
-                        }
-                    }
-                } catch(Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            dgvCarReports.ClearSelection();
         }
 
 
@@ -480,16 +444,6 @@ namespace CarReportSystem {
             this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
         }
 
-
-        //接続ボタン
-        private void btConnection_Click(object sender, EventArgs e) {
-            //データを 'infosys202311DataSet.CarReportTable' テーブルに読み込む
-            this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
-            foreach(var carReport in infosys202311DataSet.CarReportTable) {
-                addComboBox(carReport.Author, carReport.CarName);
-            }
-            dgvCarReports.ClearSelection();
-        }
 
 
 
