@@ -226,13 +226,15 @@ namespace CarReportSystem {
                 selectedMaker2(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
                 cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
-                if(!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
+                if(!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) &&
+                 ((byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length != 0) {
                     pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
-                } else {
+                }else {
                     pbCarImage.Image = null;
                 }
                 //別解
-                //pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) ?
+                //pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) &&
+                //    ((byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length != 0 ?
                 //    ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
             }
             buttonMask();
@@ -468,8 +470,6 @@ namespace CarReportSystem {
                     MessageBox.Show(ex.Message);
                 }
             }
-
-
         }
 
 
@@ -485,6 +485,9 @@ namespace CarReportSystem {
         private void btConnection_Click(object sender, EventArgs e) {
             //データを 'infosys202311DataSet.CarReportTable' テーブルに読み込む
             this.carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
+            foreach(var carReport in infosys202311DataSet.CarReportTable) {
+                addComboBox(carReport.Author, carReport.CarName);
+            }
             dgvCarReports.ClearSelection();
         }
 
