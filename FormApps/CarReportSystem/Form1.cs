@@ -432,16 +432,28 @@ namespace CarReportSystem {
             this.tableAdapterManager.UpdateAll(this.infosys202311DataSet);
         }
 
+
+        //記録者検索ボタン
         private void btAuthorSearch_Click(object sender, EventArgs e) {
             carReportTableTableAdapter.FillByAuthor(this.infosys202311DataSet.CarReportTable,tbAuthorSearch.Text);
         }
 
+
+        //車名検索ボタン
         private void btCarNameSearch_Click(object sender, EventArgs e) {
             carReportTableTableAdapter.FillByCarName(this.infosys202311DataSet.CarReportTable,tbCarNameSearch.Text);
         }
 
+
+        //日付検索ボタン
         private void btDateSearch_Click(object sender, EventArgs e) {
-            carReportTableTableAdapter.FillByDate(this.infosys202311DataSet.CarReportTable, dtpDate2.Value.ToString());
+            carReportTableTableAdapter.FillByDate(this.infosys202311DataSet.CarReportTable, dtpFromDate.Text,dtpToDate.Text);
+        }
+
+
+        //リセットボタン
+        private void btReset_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.Fill(this.infosys202311DataSet.CarReportTable);
         }
     }
 }

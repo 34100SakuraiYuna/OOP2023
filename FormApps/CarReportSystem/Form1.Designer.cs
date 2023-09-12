@@ -88,13 +88,16 @@ namespace CarReportSystem {
             this.tbAuthorSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.btDateSearch = new System.Windows.Forms.Button();
             this.btCarNameSearch = new System.Windows.Forms.Button();
             this.btAuthorSearch = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.tbCarNameSearch = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btDateSearch = new System.Windows.Forms.Button();
-            this.dtpDate2 = new System.Windows.Forms.DateTimePicker();
+            this.btReset = new System.Windows.Forms.Button();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.carReportTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.infosys202311DataSet = new CarReportSystem.infosys202311DataSet();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -701,17 +704,17 @@ namespace CarReportSystem {
             // tbAuthorSearch
             // 
             this.tbAuthorSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbAuthorSearch.Location = new System.Drawing.Point(113, 85);
+            this.tbAuthorSearch.Location = new System.Drawing.Point(497, 22);
             this.tbAuthorSearch.Multiline = true;
             this.tbAuthorSearch.Name = "tbAuthorSearch";
-            this.tbAuthorSearch.Size = new System.Drawing.Size(197, 32);
+            this.tbAuthorSearch.Size = new System.Drawing.Size(162, 32);
             this.tbAuthorSearch.TabIndex = 14;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(15, 92);
+            this.label8.Location = new System.Drawing.Point(406, 35);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(85, 19);
             this.label8.TabIndex = 15;
@@ -719,7 +722,9 @@ namespace CarReportSystem {
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dtpDate2);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.dtpToDate);
+            this.groupBox1.Controls.Add(this.dtpFromDate);
             this.groupBox1.Controls.Add(this.btDateSearch);
             this.groupBox1.Controls.Add(this.btCarNameSearch);
             this.groupBox1.Controls.Add(this.btAuthorSearch);
@@ -735,13 +740,33 @@ namespace CarReportSystem {
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索";
             // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.dtpFromDate.Location = new System.Drawing.Point(113, 29);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(197, 26);
+            this.dtpFromDate.TabIndex = 20;
+            // 
+            // btDateSearch
+            // 
+            this.btDateSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btDateSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btDateSearch.Location = new System.Drawing.Point(313, 82);
+            this.btDateSearch.Name = "btDateSearch";
+            this.btDateSearch.Size = new System.Drawing.Size(81, 32);
+            this.btDateSearch.TabIndex = 19;
+            this.btDateSearch.Text = "検索";
+            this.btDateSearch.UseVisualStyleBackColor = false;
+            this.btDateSearch.Click += new System.EventHandler(this.btDateSearch_Click);
+            // 
             // btCarNameSearch
             // 
             this.btCarNameSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btCarNameSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btCarNameSearch.Location = new System.Drawing.Point(667, 22);
+            this.btCarNameSearch.Location = new System.Drawing.Point(665, 85);
             this.btCarNameSearch.Name = "btCarNameSearch";
-            this.btCarNameSearch.Size = new System.Drawing.Size(81, 38);
+            this.btCarNameSearch.Size = new System.Drawing.Size(81, 34);
             this.btCarNameSearch.TabIndex = 18;
             this.btCarNameSearch.Text = "検索";
             this.btCarNameSearch.UseVisualStyleBackColor = false;
@@ -751,7 +776,7 @@ namespace CarReportSystem {
             // 
             this.btAuthorSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btAuthorSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAuthorSearch.Location = new System.Drawing.Point(316, 85);
+            this.btAuthorSearch.Location = new System.Drawing.Point(665, 22);
             this.btAuthorSearch.Name = "btAuthorSearch";
             this.btAuthorSearch.Size = new System.Drawing.Size(81, 32);
             this.btAuthorSearch.TabIndex = 17;
@@ -763,7 +788,7 @@ namespace CarReportSystem {
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label9.Location = new System.Drawing.Point(431, 31);
+            this.label9.Location = new System.Drawing.Point(429, 92);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 19);
             this.label9.TabIndex = 15;
@@ -772,7 +797,7 @@ namespace CarReportSystem {
             // tbCarNameSearch
             // 
             this.tbCarNameSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbCarNameSearch.Location = new System.Drawing.Point(499, 24);
+            this.tbCarNameSearch.Location = new System.Drawing.Point(497, 85);
             this.tbCarNameSearch.Multiline = true;
             this.tbCarNameSearch.Name = "tbCarNameSearch";
             this.tbCarNameSearch.Size = new System.Drawing.Size(161, 32);
@@ -782,31 +807,41 @@ namespace CarReportSystem {
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label10.Location = new System.Drawing.Point(33, 27);
+            this.label10.Location = new System.Drawing.Point(34, 36);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 19);
             this.label10.TabIndex = 15;
             this.label10.Text = "日付：";
             // 
-            // btDateSearch
+            // btReset
             // 
-            this.btDateSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btDateSearch.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btDateSearch.Location = new System.Drawing.Point(316, 19);
-            this.btDateSearch.Name = "btDateSearch";
-            this.btDateSearch.Size = new System.Drawing.Size(81, 32);
-            this.btDateSearch.TabIndex = 19;
-            this.btDateSearch.Text = "検索";
-            this.btDateSearch.UseVisualStyleBackColor = false;
-            this.btDateSearch.Click += new System.EventHandler(this.btDateSearch_Click);
+            this.btReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btReset.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btReset.Location = new System.Drawing.Point(915, 67);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(108, 23);
+            this.btReset.TabIndex = 21;
+            this.btReset.Text = "リセット";
+            this.btReset.UseVisualStyleBackColor = false;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
-            // dtpDate2
+            // dtpToDate
             // 
-            this.dtpDate2.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.dtpDate2.Location = new System.Drawing.Point(112, 22);
-            this.dtpDate2.Name = "dtpDate2";
-            this.dtpDate2.Size = new System.Drawing.Size(197, 26);
-            this.dtpDate2.TabIndex = 20;
+            this.dtpToDate.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.dtpToDate.Location = new System.Drawing.Point(110, 86);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(200, 26);
+            this.dtpToDate.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label11.Location = new System.Drawing.Point(192, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 19);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "～";
             // 
             // carReportTableBindingSource
             // 
@@ -883,6 +918,7 @@ namespace CarReportSystem {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1297, 531);
+            this.Controls.Add(this.btReset);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.carReportTableBindingNavigator);
             this.Controls.Add(this.btScaleChange);
@@ -1013,8 +1049,11 @@ namespace CarReportSystem {
         private System.Windows.Forms.Button btCarNameSearch;
         private System.Windows.Forms.TextBox tbCarNameSearch;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtpDate2;
+        private System.Windows.Forms.DateTimePicker dtpFromDate;
         private System.Windows.Forms.Button btDateSearch;
+        private System.Windows.Forms.Button btReset;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker dtpToDate;
     }
 }
 
