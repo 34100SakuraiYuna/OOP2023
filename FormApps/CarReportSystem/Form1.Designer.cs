@@ -733,6 +733,7 @@ namespace CarReportSystem {
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tbAuthorSearch);
             this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox1.Location = new System.Drawing.Point(21, 366);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(754, 128);
@@ -837,7 +838,7 @@ namespace CarReportSystem {
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(192, 64);
+            this.label11.Location = new System.Drawing.Point(190, 64);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(28, 19);
             this.label11.TabIndex = 22;

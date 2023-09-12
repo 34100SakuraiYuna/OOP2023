@@ -339,10 +339,12 @@ namespace CarReportSystem {
             btModifiReport.Enabled = true;
             btDeleteReport.Enabled = true;
             btScaleChange.Enabled = true;
+            
 
             if(dgvCarReports.RowCount < 1 || cbAuthor.Text == "") {
                 btModifiReport.Enabled = false;
                 btDeleteReport.Enabled = false;
+                //btReset.Enabled = false;
             }
 
             if(pbCarImage.Image == null) {
@@ -422,6 +424,7 @@ namespace CarReportSystem {
                 addComboBox(carReport.Author, carReport.CarName);
             }
             dgvCarReports.ClearSelection();
+            buttonMask();
         }
 
 
@@ -448,6 +451,8 @@ namespace CarReportSystem {
         //日付検索ボタン
         private void btDateSearch_Click(object sender, EventArgs e) {
             carReportTableTableAdapter.FillByDate(this.infosys202311DataSet.CarReportTable, dtpFromDate.Text,dtpToDate.Text);
+            //模範解答
+            //carReportTableTableAdapter.FillByBetweenDate(this.infosys202311DataSet.CarReportTable,dtpFromDate.Text,dtpToDate.Text);
         }
 
 
