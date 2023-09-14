@@ -106,8 +106,6 @@ namespace SampleEntityFramework {
 
                 db.SaveChanges();
             }
-
-
         }
 
 
@@ -118,6 +116,11 @@ namespace SampleEntityFramework {
                     Console.WriteLine($"{book.Author.Name} {book.Title} {book.PublishedYear}");
                 }
             }
+
+            ////模範解答
+            //foreach(var book in GetBooks()) {
+            //    Console.WriteLine("{0}{1}{2}({3:yyyy/MM/dd})",book.Title,book.PublishedYear,book.Author.Name,book.Author.Birthday);
+            //}
         }
 
 
@@ -130,6 +133,13 @@ namespace SampleEntityFramework {
                 }
             }
 
+            ////模範解答
+            //using(var db = new BooksDbContext()) {
+            //    var books = db.Books.Where(a => a.Title.Length == db.Books.Max(b => b.Title.Length));
+            //    foreach(var book in books.ToArray()) {
+            //        Console.WriteLine("{0}{1}{2}({3:yyyy/MM/dd})",book.Title,book.PublishedYear,book.Author.Name,book.Author.Birthday);
+            //    }
+            //}
         }
 
 
@@ -147,8 +157,6 @@ namespace SampleEntityFramework {
         private static void Exercise1_5() {
             using(var db = new BooksDbContext()) {
                 var birthday = db.Authors.OrderByDescending(a => a.Birthday.Month).ThenBy(a => a.Birthday.Day).ToList();
-                //birthday.OrderBy(a=> a.bi);
-                //var authors = .ToList();
                 foreach(var author in birthday) {
                     Console.WriteLine($"{author.Name}");
 
@@ -160,6 +168,10 @@ namespace SampleEntityFramework {
                 }
             }
         }
+
+
+
+
 
 
         // List 13-5
