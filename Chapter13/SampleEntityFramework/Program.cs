@@ -27,7 +27,7 @@ namespace SampleEntityFramework {
 
             Console.WriteLine();
             Console.WriteLine("# 1.5");
-           // Exercise1_5();
+            Exercise1_5();
 
             Console.ReadLine();
             //InsertBooks();
@@ -146,9 +146,17 @@ namespace SampleEntityFramework {
 
         private static void Exercise1_5() {
             using(var db = new BooksDbContext()) {
-                var authors = db.Authors.OrderBy(a => a.Birthday.ToString("MMdd")).ToList();
-                foreach(var author in authors) {
-                    Console.WriteLine($"{author.Name} {author.Birthday}");
+                var birthday = db.Authors.OrderByDescending(a => a.Birthday.Month).ThenBy(a => a.Birthday.Day).ToList();
+                //birthday.OrderBy(a=> a.bi);
+                //var authors = .ToList();
+                foreach(var author in birthday) {
+                    Console.WriteLine($"{author.Name}");
+
+                    var books = db.Books.Where(a=> a.Author.Name == author.Name).ToList();
+                    foreach(var book in books) {
+                        Console.WriteLine($"{book.Title} {book.PublishedYear}");
+                    }
+                    Console.WriteLine();
                 }
             }
         }
