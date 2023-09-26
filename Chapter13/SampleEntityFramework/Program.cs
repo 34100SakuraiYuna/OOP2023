@@ -148,9 +148,17 @@ namespace SampleEntityFramework {
                 var books = db.Books.OrderBy(a => a.PublishedYear).Include(nameof(Author)).ToList();
                 var oldBooks = books.Take(3).ToList();
                 foreach(var book in oldBooks) {
-                    Console.WriteLine($"{book.Author.Name} {book.Title} {book.PublishedYear}");
+                    Console.WriteLine("{0}{1}{2}({3:yyyy/MM/dd})",book.Title,book.PublishedYear,book.Author.Name,book.Author.Birthday);
                 }
             }
+
+            ////模範解答
+            //using(var db = new BooksDbContext()) {
+            //    var books = db.Books.OrderBy(a => a.PublishedYear).Take(3);
+            //    foreach(var book in books.ToArray()) {
+            //        Console.WriteLine($"{book.Author.Name} {book.Title} {book.PublishedYear}");
+            //    }
+            //}
         }
 
 
@@ -167,6 +175,18 @@ namespace SampleEntityFramework {
                     Console.WriteLine();
                 }
             }
+
+            //模範解答
+            //using(var db = new BooksDbContext()) {
+            //    var authors = db.Authors.OrderByDescending(a => a.Birthday);
+            //    foreach(var author in authors.ToArray()) {
+            //        Console.WriteLine("{0}{1:yyyy/MM}", author.Name,author.Birthday);
+            //        foreach(var book in author.Books) {
+            //            Console.WriteLine("  {0} {1}",book.Title,book.PublishedYear,book.Author.Name,book.Author.Birthday);
+            //        }
+            //        Console.WriteLine();
+            //    }
+            //}
         }
 
 
