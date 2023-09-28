@@ -17,15 +17,19 @@ namespace RssReader {
             InitializeComponent();
         }
 
+
+        //取得ボタン
         private void btGet_Click(object sender, EventArgs e) {
             using(var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url) ;
 
-                var nodes = xdoc.Root.Descendants("title");
+                var nodes = xdoc.Root.Descendants("item").Select(x=> new ItemData { 
+                    Title = x.Element("title").Value
+                });
+
                 foreach(var node in nodes) {
-                    string s = Regex.Replace(node.Value, "【|】", "");
-                    lbRssTitle.Items.Add(s);
+                    lbRssTitle.Items.Add(node.Title);
                 }
             }
         }
