@@ -21,11 +21,16 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
+            urlSelect();
         }
 
 
         //取得ボタン
         private void btGet_Click(object sender, EventArgs e) {
+            if(tbUrl.Text == "") {
+                return;
+            }
+            
             using(var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
@@ -44,8 +49,28 @@ namespace RssReader {
 
         //タイトルをクリックした
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+            if(lbRssTitle == null) {
+                return;
+            }
             var num = lbRssTitle.SelectedIndex;
             wbBrowser.Navigate(ItemDatas[num].Link);
+        }
+
+
+        //ラジオボタン
+        public void urlSelect() {
+            string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
+            if(rb1.Checked) {
+            } else if(rb2.Checked) {
+            } else if(rb3.Checked) {
+            } else if(rb4.Checked) {
+            } else if(rb5.Checked) {
+            } else if(rb6.Checked) {
+            } else if(rb7.Checked) {
+            } else if(rb8.Checked) {
+            } else {
+            }
+            tbUrl.Text = url;
         }
     }
 }
