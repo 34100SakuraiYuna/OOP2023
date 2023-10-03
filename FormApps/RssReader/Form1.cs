@@ -8,13 +8,16 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
-        IEnumerable<ItemData> nodes;
-        
+        //IEnumerable<ItemData> nodes;
+
+        //模範解答
+        List<ItemData> ItemDatas = new List<ItemData>();
 
         public Form1() {
             InitializeComponent();
@@ -27,24 +30,22 @@ namespace RssReader {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
-                nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
                     Title = (string)x.Element("title"),
                     Link = (string)x.Element("link")
-                });
+                }).ToList();
 
-                foreach(var node in nodes) {
+                foreach(var node in ItemDatas) {
                     lbRssTitle.Items.Add(node.Title);
                 }
             }
         }
 
 
+        //タイトルをクリックした
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
-            foreach(var item in nodes) {
-                if(sender.ToString().Contains(item.Title)) {
-                    wbBrowser.Navigate(item.Link);
-                }
-            }
+            var num = lbRssTitle.SelectedIndex;
+            wbBrowser.Navigate(ItemDatas[num].Link);
         }
     }
 }
