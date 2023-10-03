@@ -13,6 +13,9 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
+        IEnumerable<ItemData> nodes;
+        
+
         public Form1() {
             InitializeComponent();
         }
@@ -22,14 +25,24 @@ namespace RssReader {
         private void btGet_Click(object sender, EventArgs e) {
             using(var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url) ;
+                XDocument xdoc = XDocument.Load(url);
 
-                var nodes = xdoc.Root.Descendants("item").Select(x=> new ItemData { 
-                    Title = x.Element("title").Value
+                nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                    Title = (string)x.Element("title"),
+                    Link = (string)x.Element("link")
                 });
 
                 foreach(var node in nodes) {
                     lbRssTitle.Items.Add(node.Title);
+                }
+            }
+        }
+
+
+        private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+            foreach(var item in nodes) {
+                if(sender.ToString().Contains(item.Title)) {
+                    wbBrowser.Navigate(item.Link);
                 }
             }
         }
