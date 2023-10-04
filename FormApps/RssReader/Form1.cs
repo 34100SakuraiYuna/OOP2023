@@ -21,7 +21,6 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
-            urlSelect();
         }
 
 
@@ -30,6 +29,7 @@ namespace RssReader {
             if(tbUrl.Text == "") {
                 return;
             }
+            lbRssTitle.Items.Clear();   //リストボックスのクリア
             
             using(var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
@@ -58,7 +58,7 @@ namespace RssReader {
 
 
         //ラジオボタン
-        public void urlSelect() {
+        private void groupBox1_Enter(object sender, EventArgs e) {
             string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
             if(rb1.Checked) {
             } else if(rb2.Checked) {
