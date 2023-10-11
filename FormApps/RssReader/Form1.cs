@@ -59,10 +59,10 @@ namespace RssReader {
 
 
         private void button1_Click(object sender, EventArgs e) {
-            string url = "https://news.yahoo.co.jp/rss/topics/";
+            var url = "https://news.yahoo.co.jp/rss/topics/";
             //string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
             if(rb1.Checked) {
-                url.Concat("asdfghjkl");
+                url = (string)url.Concat("asdfghjkl");
             } else if(rb2.Checked) {
                 url.Concat("");
             } else if(rb3.Checked) {
