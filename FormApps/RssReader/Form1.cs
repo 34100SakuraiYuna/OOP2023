@@ -57,20 +57,46 @@ namespace RssReader {
         }
 
 
-        //ラジオボタン
-        private void groupBox1_Enter(object sender, EventArgs e) {
-            string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
+
+        private void button1_Click(object sender, EventArgs e) {
+            string url = "https://news.yahoo.co.jp/rss/topics/";
+            //string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
             if(rb1.Checked) {
+                url.Concat("asdfghjkl");
             } else if(rb2.Checked) {
+                url.Concat("");
             } else if(rb3.Checked) {
+                url.Concat(""); 
             } else if(rb4.Checked) {
+                url.Concat(""); 
             } else if(rb5.Checked) {
+                url.Concat("");
             } else if(rb6.Checked) {
+                url.Concat("");
             } else if(rb7.Checked) {
+                url.Concat("");
             } else if(rb8.Checked) {
+                url.Concat("");
             } else {
+                url = "URLが取得できません";
             }
+
             tbUrl.Text = url;
+            getUrl();
+        }
+
+
+        private string[] getUrl() {
+            var urls = new string[8];
+            XDocument xdoc = XDocument.Load("https://news.yahoo.co.jp/rss/topics/top-picks.xml");
+            ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                Title = (string)x.Element("title"),
+                Link = (string)x.Element("link")
+            }).ToList();
+
+
+
+            return urls;
         }
     }
 }
