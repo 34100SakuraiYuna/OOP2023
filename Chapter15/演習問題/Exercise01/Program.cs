@@ -47,6 +47,14 @@ namespace Exercise01 {
 
 
         private static void Exercise1_4() {
+            var groups = Library.Books.OrderByDescending(b => b.PublishedYear).OrderByDescending(b => b.Price);
+            var categorys = Library.Categories.ToList();
+            foreach(var g in groups) {
+                Console.WriteLine("{0}年　{1}円　{2}　({3})"
+                    ,g.PublishedYear,g.Price,g.Title,categorys[(g.CategoryId)-1].Name);
+                
+            }
+
         }
 
 
