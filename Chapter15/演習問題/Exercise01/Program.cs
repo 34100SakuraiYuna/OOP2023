@@ -76,15 +76,6 @@ namespace Exercise01 {
 
 
         private static void Exercise1_6() {
-            //var categorys = Library.Categories.OrderBy(c=> c.Name).ToList();
-            //var books = Library.Books;
-            //foreach(var category in categorys) {
-            //    Console.WriteLine("#{0}", category.Name);
-            //    foreach(var book in books) {
-            //       Console.WriteLine("　{0}",book.Title);
-            //    }
-            //}
-
             var groups = Library.Books.GroupBy(b => b.CategoryId);
             var categorys = Library.Categories.OrderBy(c => c.Name);
             foreach(var category in categorys) {
