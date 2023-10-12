@@ -17,6 +17,7 @@ namespace Exercise01 {
             Console.WriteLine();
             Exercise1_6();
             Console.WriteLine();
+            Console.WriteLine();
             Exercise1_7();
             Console.WriteLine();
             Exercise1_8();
@@ -100,7 +101,6 @@ namespace Exercise01 {
                 Console.WriteLine(item);
             }
 
-
             //模範解答
             //var query = Library.Books.Where(b=> b.PublishedYear == 2016)
             //    .Join(Library.Categories,
@@ -111,7 +111,6 @@ namespace Exercise01 {
             //foreach(var name in query) {
             //    Console.WriteLine(name);
             //}
-
         }
 
 
@@ -129,22 +128,43 @@ namespace Exercise01 {
                 }
             }
 
+            //模範解答
+            //var query = Library.Books
+            //    .Join(Library.Categories,
+            //    book => book.CategoryId,
+            //    category => category.Id,
+            //    (book, category) => new { 
+            //        book.PublishedYear,
+            //        book.Price,
+            //        book.Title,
+            //        CategoryName = category.Id
+            //    })
+            //    .GroupBy(x=> x.CategoryName)
+            //    .OrderBy(x=> x.Key);
+
+            //foreach(var group in query) {
+            //    Console.WriteLine("#{0}", group.Key);
+            //    foreach(var item in group) {
+            //        Console.WriteLine("　{0}", item.Title);
+            //    }
+            //}
         }
 
 
         private static void Exercise1_7() {
-            var books = Library.Books.GroupBy(b=> b.PublishedYear).OrderBy(b=> b.Key);
+            var a = Library.Books.GroupBy(g=> g.PublishedYear);
+            var groups = Library.Categories
+                .Join(a,
+                c => c.Id,
+                b => b.Key,
+                (c, books) => new {
+                    Category = c.Name,
+                    Books = books
+                });
 
-            foreach(var item in books) {
-                Console.WriteLine("#{0}年",item.Key);
+            foreach(var group in a) {
+                foreach(var i in group) {
 
-                foreach(var i in item) {
-                    var a =  Library.Categories.Where(c=> c.Name == "Development").Select(c=> c.Id);
-
-                    if(a.Equals(i.CategoryId)) {
-                        Console.WriteLine("　{0}",i.Title);
-
-                    }
                 }
             }
         }
