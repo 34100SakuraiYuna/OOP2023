@@ -52,13 +52,24 @@ namespace Exercise01 {
             foreach(var g in groups) {
                 Console.WriteLine("{0}年　{1}円　{2}　({3})"
                     ,g.PublishedYear,g.Price,g.Title,categorys[(g.CategoryId)-1].Name);
-                
             }
-
         }
 
 
         private static void Exercise1_5() {
+            var lookup = Library.Books
+                    .ToLookup(b => b.PublishedYear);
+            var books = lookup[2016];
+            var categorys = Library.Categories.ToList();
+            string[] categoryName = new string[5];
+
+            foreach(var book in books) {
+                categoryName[book.CategoryId-1] = categorys[(book.CategoryId-1)].Name;
+            }
+
+            foreach(var item in categoryName) {
+                Console.WriteLine(item);
+            }
         }
 
 
