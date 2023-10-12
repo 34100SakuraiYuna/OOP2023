@@ -26,22 +26,30 @@ namespace Exercise01 {
 
 
         private static void Exercise1_2() {
-            var maxPrice = Library.Books.Max(b=> b.Price);
+            var maxPrice = Library.Books.Max(b => b.Price);
             var book = Library.Books
                   .First(b => b.Price == maxPrice);
             Console.WriteLine(book);
+
+            //模範解答
+            //var max = Library.Books.Max(b => b.Price);
+            //var books = Library.Books.Where(b => b.Price == max);
+            //foreach(var book in books) {
+            //    Console.WriteLine(book);
+            //}
         }
 
 
         private static void Exercise1_3() {
-            var count = 0;
             var groups = Library.Books.GroupBy(b => b.PublishedYear).OrderBy(g => g.Key);
             foreach(var g in groups) {
-                Console.WriteLine($"{g.Key}年");
+                Console.Write($"{g.Key}年");
+                var count = 0;
+
                 foreach(var book in g) {
                     count++;
                 }
-                Console.WriteLine("{0}冊",count);
+                Console.WriteLine("　{0}冊",count);
             }
         }
 
@@ -57,23 +65,39 @@ namespace Exercise01 {
 
 
         private static void Exercise1_5() {
-            var lookup = Library.Books
-                    .ToLookup(b => b.PublishedYear);
+            var lookup = Library.Books.ToLookup(b => b.PublishedYear);
             var books = lookup[2016];
-            var categorys = Library.Categories.ToList();
-            string[] categoryName = new string[5];
+            var categorys = Library.Categories.Select(c=> c.Name).ToList();
 
-            foreach(var book in books) {
-                categoryName[book.CategoryId-1] = categorys[(book.CategoryId-1)].Name;
-            }
-
-            foreach(var item in categoryName) {
+            foreach(var item in categorys) {
                 Console.WriteLine(item);
             }
         }
 
 
         private static void Exercise1_6() {
+            //var categorys = Library.Categories.OrderBy(c=> c.Name).ToList();
+            //var books = Library.Books;
+            //foreach(var category in categorys) {
+            //    Console.WriteLine("#{0}", category.Name);
+            //    foreach(var book in books) {
+            //       Console.WriteLine("　{0}",book.Title);
+            //    }
+            //}
+
+            var groups = Library.Books.GroupBy(b => b.CategoryId);
+            var categorys = Library.Categories.OrderBy(c => c.Name);
+            foreach(var category in categorys) {
+                Console.WriteLine("#{0}", category.Name);
+                foreach(var book in groups) {
+                    foreach(var b in book) {
+                        if(b.CategoryId == category.Id) {
+                            Console.WriteLine("　{0}", b.Title);
+                        }
+                    }
+                }
+            }
+
         }
 
 
