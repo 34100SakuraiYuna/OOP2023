@@ -152,21 +152,33 @@ namespace Exercise01 {
 
 
         private static void Exercise1_7() {
-            var a = Library.Books.GroupBy(g=> g.PublishedYear);
-            var groups = Library.Categories
-                .Join(a,
-                c => c.Id,
-                b => b.Key,
-                (c, books) => new {
-                    Category = c.Name,
-                    Books = books
-                });
+            //var a = Library.Books.GroupBy(g=> g.PublishedYear);
+            //var groups = Library.Categories
+            //    .Join(a,
+            //    c => c.Id,
+            //    b => b.Key,
+            //    (c, books) => new {
+            //        Category = c.Name,
+            //        Books = books
+            //    });
 
             //foreach(var group in a) {
             //    foreach(var i in group) {
 
             //    }
             //}
+
+            //模範解答
+            var catid = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books.Where(b => b.CategoryId == catid)
+                                      .GroupBy(b => b.PublishedYear)
+                                      .OrderBy(b => b.Key);
+            foreach(var group in groups) {
+                Console.WriteLine("#{0}年",group.Key);
+                foreach(var book in group) {
+                    Console.WriteLine("　{0}",book.Title);
+                }
+            }
         }
 
 
@@ -184,6 +196,20 @@ namespace Exercise01 {
                     Console.WriteLine(group.Category);
                 }
             }
+
+            //模範解答
+            //var query = Library.Categories
+            //                   .GroupJoin(Library.Books,
+            //                              c => c.Id,
+            //                              b => b.CategoryId,
+            //                              (c, b) => new {
+            //                                  CategoryName = c.Name,
+            //                                  Count = b.Count()
+            //                              })
+            //                   .Where(x => x.Count >= 4);
+            //foreach(var category in query) {
+            //    Console.WriteLine(category.CategoryName);
+            //}
         }
     }
 }
