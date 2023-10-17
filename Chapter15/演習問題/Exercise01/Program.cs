@@ -162,11 +162,11 @@ namespace Exercise01 {
                     Books = books
                 });
 
-            foreach(var group in a) {
-                foreach(var i in group) {
+            //foreach(var group in a) {
+            //    foreach(var i in group) {
 
-                }
-            }
+            //    }
+            //}
         }
 
 
