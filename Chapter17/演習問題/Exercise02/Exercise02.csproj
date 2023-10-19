@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{593898E7-CFC9-4E7E-AA76-3E018F3648B3}</ProjectGuid>
+    <ProjectGuid>{A6B49CFD-2EF1-42AE-AE3C-EBB54CA6A712}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Exercise02</RootNamespace>
     <AssemblyName>Exercise02</AssemblyName>
@@ -43,6 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcreteConverter\ConverterFactory.cs" />
+    <Compile Include="ConcreteConverter\FeetConverter.cs" />
+    <Compile Include="ConcreteConverter\InchConverter.cs" />
+    <Compile Include="ConcreteConverter\MeterConverter.cs" />
+    <Compile Include="ConcreteConverter\YardConverter.cs" />
     <Compile Include="Framework\ConverterBase.cs" />
     <Compile Include="Framework\DistanceConverter.cs" />
     <Compile Include="Program.cs" />
@@ -50,9 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ConcreteConverter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Exercise01 {
@@ -14,12 +15,15 @@ namespace Exercise01 {
 
         protected override void Execute(string line) {
             var s = "";
-
             foreach(var item in _dictionary) {
                 line = line.Replace(item.Key, item.Value);
                 s = line;
             }
             Console.WriteLine(s);
+
+            //模範解答
+            //var str = Regex.Replace(line,"[０-９]",c=> _dictionary[c.Value[0]].ToString());
+            //Console.WriteLine(str);
         }
     }
 }
