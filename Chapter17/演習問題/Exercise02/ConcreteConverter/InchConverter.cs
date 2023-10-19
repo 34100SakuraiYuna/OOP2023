@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exercise02.ConcreteConverter {
-    class InchConverter {
+    public class InchConverter : Framework.ConverterBase {
+        public override bool IsMyUnit(string name) {
+            return name.ToLower() == "inch" || name == UnitName;
+        }
+        protected override double Ratio { get { return 1609.34; } }
+        public override string UnitName { get { return "インチ"; } }
     }
 }

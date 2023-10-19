@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
-            while(true) {
+            while (true) {
                 var from = GetConverter("変換元の単位を入力してください");
                 var to = GetConverter("変換先の単位を入力してください");
                 var distance = GetDistance(from);
@@ -25,7 +25,7 @@ namespace Exercise02 {
                 var line = Console.ReadLine();
                 double temp;
                 value = double.TryParse(line, out temp) ? (double?)temp : null;
-            } while(value == null);
+            } while (value == null);
             return value.Value;
         }
 
@@ -35,7 +35,7 @@ namespace Exercise02 {
                 Console.Write(msg + " => ");
                 var unit = Console.ReadLine();
                 converter = ConcreteConverter.ConverterFactory.GetInstance(unit);
-            } while(converter == null);
+            } while (converter == null);
             return converter;
         }
     }
