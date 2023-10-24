@@ -6,10 +6,10 @@ using System.IO;
 
 namespace Exercise03 {
     // List 17-8
-    public abstract class TextProcessor {
-        private ITextFireProcesser _service;
+    public abstract class TextFilelProcessor {
+        private ITextFileProcesser _service;
 
-        public static void Run<T>(string fileName) where T : TextProcessor, new() {
+        public static void Run<T>(string fileName) where T : TextFilelProcessor, new() {
             var self = new T();
             self.Process(fileName);
         }

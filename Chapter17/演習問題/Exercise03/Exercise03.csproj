@@ -46,7 +46,7 @@
     <Compile Include="ITextFileProcesser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextProcessor.cs" />
+    <Compile Include="TextFilelProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
