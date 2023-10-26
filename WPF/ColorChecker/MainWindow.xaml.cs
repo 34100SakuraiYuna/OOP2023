@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace ColorChecker {
     /// <summary>
@@ -20,6 +21,23 @@ namespace ColorChecker {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+        }
+
+
+        public Color backColor() {
+            var r = Convert.ToByte(rValue.Text);
+            var g = Convert.ToByte(gValue.Text);
+            var b = Convert.ToByte(bValue.Text);
+
+            var color = Color.FromRgb(r, g, b);
+
+
+            return color;
+        }
+
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            backColor();
         }
     }
 }
