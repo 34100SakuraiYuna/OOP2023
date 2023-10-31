@@ -24,13 +24,13 @@ namespace ColorChecker {
         }
 
 
-        public Color backColor() {
-            var r = Convert.ToByte(rValue.Text);
-            var g = Convert.ToByte(gValue.Text);
-            var b = Convert.ToByte(bValue.Text);
+        public SolidColorBrush backColor() {
+            byte r = Convert.ToByte(rSlider.Value);
+            byte g = Convert.ToByte(gSlider.Value);
+            byte b = Convert.ToByte(bSlider.Value);
 
-            var color = Color.FromRgb(r, g, b);
-
+            var color = new SolidColorBrush(Color.FromRgb(r,g,b));
+            colorArea.Background = color;
 
             return color;
         }
