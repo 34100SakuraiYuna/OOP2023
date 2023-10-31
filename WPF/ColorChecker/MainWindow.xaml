@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Label x:Name="colorArea" Margin="10,10,10,10"/>
+        <Label x:Name="colorArea" Margin="10,10,10,10" Background="Black"/>
 
 
         <Grid Grid.Column="1">
@@ -36,28 +36,29 @@
             <Slider x:Name="rSlider" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,5,10"
                     Maximum="255" TickPlacement="TopLeft" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
             <TextBox x:Name="rValue" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,5,10"
-                     FontSize="20" Text="{Binding ElementName=rSlider,Path=Value,Mode=OneWay}"/>
+                     FontSize="20" Text="{Binding ElementName=rSlider,Path=Value,Mode=TwoWay}"/>
 
             <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,10"
                        FontSize="20" Text="G"/>
             <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="5,0,0,10"
                     Maximum="255" TickPlacement="TopLeft" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
             <TextBox x:Name="gValue" Grid.Column="2"  Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,5,10"
-                     FontSize="20" Text="{Binding ElementName=gSlider,Path=Value,Mode=OneWay}"/>
+                     FontSize="20" Text="{Binding ElementName=gSlider,Path=Value,Mode=TwoWay}"/>
 
             <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,10"
                        FontSize="20" Text="B"/>
             <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,5,10"
                     Maximum="255" TickPlacement="TopLeft" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
             <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,5,10"
-                     FontSize="20" Text="{Binding ElementName=bSlider,Path=Value,Mode=OneWay}"/>
+                     FontSize="20" Text="{Binding ElementName=bSlider,Path=Value,Mode=TwoWay}"/>
 
             <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="119"
                       />
         </Grid>
         <Grid Grid.Column="2">
-            <Button x:Name="stockButton" Content="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox x:Name="stockList"/>
+            <Button x:Name="stockButton" Content="STOCK" VerticalAlignment="Top"
+                    Background="HotPink" Margin="5,5,5,0" FontSize="15" Click="stockButton_Click"/>
+            <ListBox x:Name="stockList" Margin="5,40,5,5"/>
         </Grid>
 
     </Grid>

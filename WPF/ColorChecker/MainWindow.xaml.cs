@@ -39,5 +39,11 @@ namespace ColorChecker {
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             backColor();
         }
+
+
+        private void stockButton_Click(object sender, RoutedEventArgs e) {
+            string s = (rValue.Text +" "+ gValue.Text +" "+ bValue.Text);
+            stockList.Items.Add(s);
+        }
     }
 }
