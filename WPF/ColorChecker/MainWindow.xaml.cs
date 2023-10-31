@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace ColorChecker {
     /// <summary>
@@ -21,6 +22,7 @@ namespace ColorChecker {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            DataContext = GetColorList();
         }
 
 
@@ -41,9 +43,23 @@ namespace ColorChecker {
         }
 
 
+        //
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            string s = (rValue.Text +" "+ gValue.Text +" "+ bValue.Text);
-            stockList.Items.Add(s);
+            string s = ("R：" + rValue.Text + "　G：" + gValue.Text + "　B：" + bValue.Text);
+            stockList.Items.Insert(0,s);
+        }
+
+
+        private MyColor[] GetColorList() {
+            return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
     }
+
+
+    public class MyColor {
+        public Color Color { get; set; }
+        public string Name { get; set; }
+    }
+
 }
