@@ -20,32 +20,48 @@ namespace ColorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        string _colorName;
+        byte _colorR;
+        byte _colorG;
+        byte _colorB;
+
+
         public MainWindow() {
             InitializeComponent();
             DataContext = GetColorList();
         }
 
 
-        //スライダーの色を返す
+        //バックcolorを変える
         public void backColor() {
-            byte r = Convert.ToByte(rSlider.Value);
-            byte g = Convert.ToByte(gSlider.Value);
-            byte b = Convert.ToByte(bSlider.Value);
+            _colorR = Convert.ToByte(rSlider.Value);
+            _colorG = Convert.ToByte(gSlider.Value);
+            _colorB = Convert.ToByte(bSlider.Value);
 
-            var color = new SolidColorBrush(Color.FromRgb(r,g,b));
+            var color = new SolidColorBrush(Color.FromRgb(_colorR, _colorG, _colorB));
             colorArea.Background = color;
         }
+
 
         //スライダーが変わったときに呼ばれる
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             backColor();
+            _colorName = null;
         }
 
 
         //ストックボタンが押された時のやつ
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            string s = "R：" + rValue.Text + "　G：" + gValue.Text + "　B：" + bValue.Text;
-            stockList.Items.Insert(0,s);
+            string s = "";
+            foreach(var item in GetColorList()) {
+                if(_colorName == item.Name) {
+                    stockList.Items.Insert(0, _colorName);
+                    break;
+                }
+            }
+
+            s = "R：" + rValue.Text + "　G：" + gValue.Text + "　B：" + bValue.Text;
+            stockList.Items.Insert(0, s);
         }
 
 
@@ -55,20 +71,24 @@ namespace ColorChecker {
         }
 
 
+        //コンボボックスで色を変える
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var color = (MyColor)((ComboBox)sender).SelectedItem;
-            var r = color.Color.R;
-            var g = color.Color.G;
-            var b = color.Color.B;
+            var bgColor = new SolidColorBrush(color.Color);
 
-            var bColor = new SolidColorBrush(Color.FromRgb(r, g, b));
+            colorArea.Background = bgColor;
 
-            colorArea.Background = bColor;   
+            _colorName = color.Name;
+
+            rValue.Text = color.Color.R.ToString();
+            gValue.Text = color.Color.G.ToString();
+            bValue.Text = color.Color.B.ToString();
         }
 
 
-        public static void a() {
-            
+        public byte colorToByte(Color color) {
+            byte b = 1;
+            return b;
         }
     }
 

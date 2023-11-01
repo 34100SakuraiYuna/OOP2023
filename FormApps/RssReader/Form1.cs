@@ -57,7 +57,6 @@ namespace RssReader {
         }
 
 
-
         private void button1_Click(object sender, EventArgs e) {
             var url = "https://news.yahoo.co.jp/rss/topics/";
             //string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
@@ -93,9 +92,7 @@ namespace RssReader {
                 Title = (string)x.Element("title"),
                 Link = (string)x.Element("link")
             }).ToList();
-
-
-
+            
             return urls;
         }
     }
