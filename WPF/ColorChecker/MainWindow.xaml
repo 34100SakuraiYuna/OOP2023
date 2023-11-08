@@ -74,7 +74,7 @@
         <Grid Grid.Column="2">
             <Button x:Name="stockButton" Content="STOCK" VerticalAlignment="Top"
                     Background="HotPink" Margin="5,5,5,0" FontSize="15" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Margin="5,40,5,5"/>
+            <ListBox x:Name="stockList" Margin="5,40,5,5" SelectionChanged="stockList_SelectionChanged2"/>
         </Grid>
 
     </Grid>
