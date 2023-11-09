@@ -134,7 +134,7 @@ namespace ColorChecker {
 
         public static void asdf() {
             IDictionary<string, int> map = new Dictionary<string, int>();
-            var q = GetColorList();
+            MyColor[] q = GetColorList();
 
         }
 
