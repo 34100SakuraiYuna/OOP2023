@@ -17,13 +17,13 @@ namespace SampleUnitConverter {
 
 
             /// <summary>
-            /// ポンド単位からグラム単位に変換する
+            /// オンス単位からグラム単位に変換する
             /// </summary>
-            /// <param name="unit">ポンド単位</param>
+            /// <param name="unit">オンス単位</param>
             /// <param name="value">値</param>
             /// <returns>グラム単位</returns>
         public double FromPoundUnit(PoundUnit unit, double value) {
-            return (value * unit.Coefficient) * 453.6 / this.Coefficient;
+            return (value * unit.Coefficient) * 28.3495 / this.Coefficient;
         }
      }
 }
