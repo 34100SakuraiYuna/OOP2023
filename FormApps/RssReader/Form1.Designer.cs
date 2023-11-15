@@ -24,13 +24,14 @@ namespace RssReader {
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
             this.rb1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btSelect = new System.Windows.Forms.Button();
             this.rb9 = new System.Windows.Forms.RadioButton();
             this.rb8 = new System.Windows.Forms.RadioButton();
             this.rb7 = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,13 @@ namespace RssReader {
             this.rb2 = new System.Windows.Forms.RadioButton();
             this.lbFavoriteList = new System.Windows.Forms.ListBox();
             this.btOkini = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.名前の変更ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.名前の変更ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -107,7 +114,7 @@ namespace RssReader {
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btSelect);
             this.groupBox1.Controls.Add(this.rb9);
             this.groupBox1.Controls.Add(this.rb8);
             this.groupBox1.Controls.Add(this.rb7);
@@ -125,17 +132,17 @@ namespace RssReader {
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "カテゴリー";
             // 
-            // button1
+            // btSelect
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(119, 172);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 42);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "決定";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btSelect.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btSelect.Location = new System.Drawing.Point(119, 172);
+            this.btSelect.Name = "btSelect";
+            this.btSelect.Size = new System.Drawing.Size(75, 42);
+            this.btSelect.TabIndex = 12;
+            this.btSelect.Text = "決定";
+            this.btSelect.UseVisualStyleBackColor = false;
+            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
             // 
             // rb9
             // 
@@ -258,6 +265,32 @@ namespace RssReader {
             this.btOkini.UseVisualStyleBackColor = false;
             this.btOkini.Click += new System.EventHandler(this.btOkini_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.名前の変更ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(133, 26);
+            // 
+            // 名前の変更ToolStripMenuItem
+            // 
+            this.名前の変更ToolStripMenuItem.Name = "名前の変更ToolStripMenuItem";
+            this.名前の変更ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.名前の変更ToolStripMenuItem.Text = "名前の変更";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.名前の変更ToolStripMenuItem1});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(133, 26);
+            // 
+            // 名前の変更ToolStripMenuItem1
+            // 
+            this.名前の変更ToolStripMenuItem1.Name = "名前の変更ToolStripMenuItem1";
+            this.名前の変更ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.名前の変更ToolStripMenuItem1.Text = "名前の変更";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -274,6 +307,8 @@ namespace RssReader {
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,10 +329,14 @@ namespace RssReader {
         private System.Windows.Forms.RadioButton rb4;
         private System.Windows.Forms.RadioButton rb3;
         private System.Windows.Forms.RadioButton rb2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btSelect;
         private System.Windows.Forms.ListBox lbFavoriteList;
         private System.Windows.Forms.Button btOkini;
         private System.Windows.Forms.RadioButton rb9;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 名前の変更ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem 名前の変更ToolStripMenuItem1;
     }
 }
 

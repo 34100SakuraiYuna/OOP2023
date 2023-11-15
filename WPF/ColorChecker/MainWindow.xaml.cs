@@ -22,47 +22,16 @@ namespace ColorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        string _colorName;
-        byte _colorR;
-        byte _colorG;
-        byte _colorB;
+        string _colorR = "0";
+        string _colorG = "0";
+        string _colorB = "0";
+        IDictionary<string, Color> colorInfoMap = new Dictionary<string, Color>();
 
 
         public MainWindow() {
             InitializeComponent();
             DataContext = GetColorList();
-        }
-
-
-        //バックcolorを変える
-        public void backColor() {
-            _colorR = Convert.ToByte(rSlider.Value);
-            _colorG = Convert.ToByte(gSlider.Value);
-            _colorB = Convert.ToByte(bSlider.Value);
-
-            var color = new SolidColorBrush(Color.FromRgb(_colorR, _colorG, _colorB));
-            colorArea.Background = color;
-        }
-
-
-        //スライダーが変わったときに呼ばれる
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            backColor();
-            //_colorName = null;
-        }
-
-
-        //ストックボタンが押された時のやつ
-        private void stockButton_Click(object sender, RoutedEventArgs e) {
-            string str = "";
-
-            if(_colorName != null) {
-                stockList.Items.Insert(0,_colorName);
-                _colorName = null;
-            } else {
-                str = "R：" + rValue.Text + "　G：" + gValue.Text + "　B：" + bValue.Text;
-                stockList.Items.Insert(0, str);
-            }
+            GetColorInfo();
         }
 
 
@@ -72,14 +41,24 @@ namespace ColorChecker {
         }
 
 
+        //色の名前とRGB値の一覧を作る
+        public void GetColorInfo() {
+            MyColor[] colors = GetColorList();
+            foreach(var item in colors) {
+                colorInfoMap.Add(item.Name, item.Color);
+            }
+        }
+
+
+        //スライダーが変わったときに呼ばれる
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            BackColor();
+        }
+
+
         //コンボボックスで色を変える
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var color = (MyColor)((ComboBox)sender).SelectedItem;
-            var bgColor = new SolidColorBrush(color.Color);
-
-            colorArea.Background = bgColor;
-
-            _colorName = color.Name;
 
             rValue.Text = color.Color.R.ToString();
             gValue.Text = color.Color.G.ToString();
@@ -87,57 +66,71 @@ namespace ColorChecker {
         }
 
 
-        public byte colorToByte(Color color) {
-            byte b = 1;
-            return b;
+        //バックcolorを変える
+        public void BackColor() {
+            byte r = Convert.ToByte(rSlider.Value);
+            byte g = Convert.ToByte(gSlider.Value);
+            byte b = Convert.ToByte(bSlider.Value);
+
+            var color = new SolidColorBrush(Color.FromRgb(r, g, b));
+            colorArea.Background = color;
+
+            SetFieldRgb(r.ToString(), g.ToString(), b.ToString());
         }
 
 
+        //ストックボタンが押された時のやつ
+        private void stockButton_Click(object sender, RoutedEventArgs e) {
+            var stockName = "";
+
+            foreach(var color in colorInfoMap) {
+                if(color.Value.R.ToString() == _colorR && color.Value.G.ToString() == _colorG && color.Value.B.ToString() == _colorB) {
+                    stockName = color.Key;
+                    break;
+                } else {
+                    stockName = "R：" + rValue.Text + "　G：" + gValue.Text + "　B：" + bValue.Text;
+                }
+            }
+            stockList.Items.Insert(0, stockName);
+        }
+
+
+        //stockListが選択された
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var stockListText = stockList.SelectedItem.ToString();
-            string[] colors = stockListText.Split('　','：');
-            string[] colors2 = new string[3];
-            int cnt = 0;
-            for(int i = 0; i < colors.Length; i++) {
-                if(i%2 == 1) {
-                    colors2[cnt] = colors[i];
-                    cnt++;
+            var itemText = stockList.SelectedItem.ToString();
+            for(int i = 0; i < 3; i++) {
+                SetRgb(itemText);
+
+                rValue.Text = _colorR;
+                gValue.Text = _colorG;
+                bValue.Text = _colorB;
+            }
+        }
+
+
+        //引数(string)のRGB値と名前をフィールド変数に入れる
+        public void SetRgb(string text) {
+            foreach(var item in colorInfoMap) {
+                if(Regex.IsMatch(text, "^[A-Z][a-z]+[A-Za-z]*")) {
+                    if(item.Key == text) {
+                        SetFieldRgb(item.Value.R.ToString(), item.Value.G.ToString(), item.Value.B.ToString());
+                        break;
+                    }
+                } else {
+                    string[] rgbPrameters = text.Split('　', '：');
+                    SetFieldRgb(rgbPrameters[1], rgbPrameters[3], rgbPrameters[5]);
+                    break;
                 }
             }
-
-            rValue.Text = colors2[0];
-            gValue.Text = colors2[1];
-            bValue.Text = colors2[2];
         }
 
 
-        private void stockList_SelectionChanged2(object sender, SelectionChangedEventArgs e) {
-            var a = stockList.SelectedItem.ToString();
-            string[] b = a.Split('　', '：');
-            string[] c = new string[3];
-            int cnt = 0;
-            for(int i = 0; i < b.Length; i++) {
-                if(i % 2 == 1) {
-                    c[cnt] = b[i];
-                    cnt++;
-                }
-            }
-
-            rValue.Text = c[0];
-            gValue.Text = c[1];
-            bValue.Text = c[2];
-
-            //var ColName = new ColorConverter().ConvertFromString(a);
-            //Color w = Color.fromName(a);
+        //_colorRGBに値をセットする
+        public void SetFieldRgb(string r,string g,string b) {
+            _colorR = r;
+            _colorG = g;
+            _colorB = b;
         }
-
-
-        public static void asdf() {
-            IDictionary<string, int> map = new Dictionary<string, int>();
-            MyColor[] q = GetColorList();
-
-        }
-
     }
 
 

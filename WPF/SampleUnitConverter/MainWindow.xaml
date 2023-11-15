@@ -14,7 +14,7 @@
     <StackPanel Margin="4">
         <StackPanel Orientation="Horizontal">
             <TextBox Width="100" Margin="4"
-                     Text="{Binding GrammeValue,StringFormat={}{0:N3}}"/>
+                     Text="{Binding GrammeValue,StringFormat={}{0:N6}}"/>
             <ComboBox Width="80" Margin="4" 
                       ItemsSource="{Binding Source={x:Static SampleUnitConverter:GrammeUnit.Units}}"
                       SelectedItem="{Binding CurrentGrammeUnit}"/>
@@ -27,7 +27,7 @@
         
         <StackPanel Orientation="Horizontal">
             <TextBox Width="100" Margin="4"
-                     Text="{Binding PoundValue,StringFormat={}{0:N3}}"/>
+                     Text="{Binding PoundValue,StringFormat={}{0:N6}}"/>
             <ComboBox Width="80" Margin="4"
                       ItemsSource="{Binding Source={x:Static SampleUnitConverter:PoundUnit.Units}}"
                       SelectedItem="{Binding CurrentPoundUnit}"/>

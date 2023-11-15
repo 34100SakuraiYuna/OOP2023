@@ -18,54 +18,48 @@ namespace RssReader {
 
         //模範解答
         List<ItemData> ItemDatas = new List<ItemData>();
+        IDictionary<string, string> favolitSiteMap = new Dictionary<string, string>();
 
         public Form1() {
             InitializeComponent();
         }
 
+        private void ContextMenu_Click(object sender, EventArgs e) {
+        }
+
 
         //取得ボタン
         private void btGet_Click(object sender, EventArgs e) {
-            #region
-            //if(tbUrl.Text == "") {
+            lbRssTitle.Items.Clear();
+            
+            //if(tbUrl.Text == "" || Regex.IsMatch(tbUrl.Text,"[ぁ-ん]")) {
             //    return;
             //}
-            //lbRssTitle.Items.Clear();   //リストボックスのクリア
 
-            //using(var wc = new WebClient()) {
-            //    var url = wc.OpenRead(tbUrl.Text);
-            //    XDocument xdoc = XDocument.Load(url);
 
-            //    ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
-            //        Title = (string)x.Element("title"),
-            //        Link = (string)x.Element("link")
-            //    }).ToList();
+            try {
+                using(var wc = new WebClient()) {
+                    var url = wc.OpenRead(tbUrl.Text);
+                    XDocument xdoc = XDocument.Load(url);
 
-            //    foreach(var node in ItemDatas) {
-            //        lbRssTitle.Items.Add(node.Title);
-            //    }
-            //}
-            #endregion
+                    ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                        Title = (string)x.Element("title"),
+                        Link = (string)x.Element("link")
+                    }).ToList();
 
-            lbRssTitle.Items.Clear();
-
-            using(var wc = new WebClient()) {
-                var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url);
-
-                ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
-                    Title = (string)x.Element("title"),
-                    Link = (string)x.Element("link")
-                }).ToList();
-
-                foreach(var node in ItemDatas) {
-                    lbRssTitle.Items.Add(node.Title);
+                    foreach(var node in ItemDatas) {
+                        lbRssTitle.Items.Add(node.Title);
+                    }
                 }
+            } catch(System.Net.WebException) {
+                return;
+            } catch(System.ArgumentException) {
+                return;
             }
         }
 
 
-        //タイトルをクリックした
+        //普通のタイトルをクリックした
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
             if(lbRssTitle == null) {
                 return;
@@ -79,9 +73,10 @@ namespace RssReader {
             lbFavoriteList.ClearSelected();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            var url = "https://news.yahoo.co.jp/rss/topics/";
-            //string url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
+
+        //決定ボタン
+        private void btSelect_Click(object sender, EventArgs e) {
+            var url = "";
             if(rb1.Checked) {
                 url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
             } else if(rb2.Checked) {
@@ -105,28 +100,27 @@ namespace RssReader {
             }
 
             tbUrl.Text = url;
-            //getUrl();
         }
 
 
-        private string[] getUrl() {
-            var urls = new string[8];
-            XDocument xdoc = XDocument.Load("https://news.yahoo.co.jp/rss/topics/top-picks.xml");
-            ItemDatas = xdoc.Root.Descendants("item").Select(x => new ItemData {
-                Title = (string)x.Element("title"),
-                Link = (string)x.Element("link")
-            }).ToList();
-            
-            return urls;
-        }
-
+        //お気に入りボタン
         private void btOkini_Click(object sender, EventArgs e) {
-            var a = lbRssTitle.SelectedItem;
-            lbFavoriteList.Items.Insert(0,a);
+            if(lbRssTitle.SelectedItem == null) {
+                return;
+            }
+            var selectedTitle = lbRssTitle.SelectedItem.ToString();
+            lbFavoriteList.Items.Insert(0, selectedTitle);
+
+            foreach(var siteInfo in ItemDatas) {
+                if(siteInfo.Title == selectedTitle) {
+                    favolitSiteMap.Add(siteInfo.Title, siteInfo.Link);
+                    break;
+                }
+            }
         }
 
 
-        //
+        //お気に入り一覧のクリック
         private void lbFavoriteList_SelectedIndexChanged(object sender, EventArgs e) {
             if(lbFavoriteList == null) {
                 return;
@@ -135,9 +129,17 @@ namespace RssReader {
                 return;
             }
 
-            var num = lbFavoriteList.SelectedIndex;
-            wbBrowser.Navigate(ItemDatas[num].Link);
+            var favolitSiteTitle = lbFavoriteList.SelectedItem.ToString();
+            var favolitSiteLink = "";
+            foreach(var favolitSite in favolitSiteMap) {
+                if(favolitSite.Key == favolitSiteTitle) {
+                    favolitSiteLink = favolitSite.Value;
+                }
+            }
+
+            wbBrowser.Navigate(favolitSiteLink);
             lbRssTitle.ClearSelected();
         }
+
     }
 }

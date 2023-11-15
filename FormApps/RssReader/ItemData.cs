@@ -8,5 +8,9 @@ namespace RssReader {
     public class ItemData {
         public string Title { get; set; }
         public string Link { get; set; }
+
+        public static implicit operator List<object>(ItemData v) {
+            throw new NotImplementedException();
+        }
     }
 }
