@@ -18,24 +18,28 @@ namespace RssReader {
 
         //模範解答
         List<ItemData> ItemDatas = new List<ItemData>();
-        IDictionary<string, string> favolitSiteMap = new Dictionary<string, string>();
+        List<site> _favoriteSiteInfo = new List<site>();
+        site sitedata;
+
+
+
+
 
         public Form1() {
             InitializeComponent();
         }
 
-        private void ContextMenu_Click(object sender, EventArgs e) {
+
+        public struct site {
+            public string Link;
+            public string Title;
+            public string Text;
         }
 
 
         //取得ボタン
         private void btGet_Click(object sender, EventArgs e) {
             lbRssTitle.Items.Clear();
-            
-            //if(tbUrl.Text == "" || Regex.IsMatch(tbUrl.Text,"[ぁ-ん]")) {
-            //    return;
-            //}
-
 
             try {
                 using(var wc = new WebClient()) {
@@ -108,13 +112,24 @@ namespace RssReader {
             if(lbRssTitle.SelectedItem == null) {
                 return;
             }
-            var selectedTitle = lbRssTitle.SelectedItem.ToString();
-            lbFavoriteList.Items.Insert(0, selectedTitle);
 
             foreach(var siteInfo in ItemDatas) {
-                if(siteInfo.Title == selectedTitle) {
-                    favolitSiteMap.Add(siteInfo.Title, siteInfo.Link);
-                    break;
+                if(siteInfo.Title == lbRssTitle.SelectedItem.ToString()) {
+                    if(_favoriteSiteInfo.Contains((site)lbRssTitle.SelectedItem)) {
+                        sitedata = new site {
+                            Link = siteInfo.Link,
+                            Title = siteInfo.Title,
+                            Text = siteInfo.Title
+                        };
+
+                        if(sitedata.Text.Length >= 17) {
+                            sitedata.Text = sitedata.Text.Substring(0, 16) + "...";
+                        }
+
+                        lbFavoriteList.Items.Insert(0, sitedata.Text);
+                        _favoriteSiteInfo.Add(sitedata);
+                        break;
+                    }
                 }
             }
         }
@@ -129,17 +144,19 @@ namespace RssReader {
                 return;
             }
 
-            var favolitSiteTitle = lbFavoriteList.SelectedItem.ToString();
-            var favolitSiteLink = "";
-            foreach(var favolitSite in favolitSiteMap) {
-                if(favolitSite.Key == favolitSiteTitle) {
-                    favolitSiteLink = favolitSite.Value;
+            foreach(var item in _favoriteSiteInfo) {
+                if(item.Text == lbFavoriteList.SelectedItem.ToString()) {
+                    wbBrowser.Navigate(item.Link);
                 }
             }
-
-            wbBrowser.Navigate(favolitSiteLink);
             lbRssTitle.ClearSelected();
         }
+
+
+        private void changeNameToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show("この機能は実装されていません");
+        }
+
 
     }
 }

@@ -46,9 +46,13 @@ namespace RssReader {
             this.名前の変更ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.名前の変更ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.operationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -257,7 +261,7 @@ namespace RssReader {
             this.btOkini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btOkini.BackColor = System.Drawing.Color.Pink;
             this.btOkini.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btOkini.Location = new System.Drawing.Point(788, 264);
+            this.btOkini.Location = new System.Drawing.Point(772, 264);
             this.btOkini.Name = "btOkini";
             this.btOkini.Size = new System.Drawing.Size(145, 51);
             this.btOkini.TabIndex = 7;
@@ -288,8 +292,33 @@ namespace RssReader {
             // 名前の変更ToolStripMenuItem1
             // 
             this.名前の変更ToolStripMenuItem1.Name = "名前の変更ToolStripMenuItem1";
-            this.名前の変更ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.名前の変更ToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.名前の変更ToolStripMenuItem1.Text = "名前の変更";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.operationToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(955, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // operationToolStripMenuItem
+            // 
+            this.operationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeNameToolStripMenuItem});
+            this.operationToolStripMenuItem.Name = "operationToolStripMenuItem";
+            this.operationToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.operationToolStripMenuItem.Text = "操作";
+            // 
+            // changeNameToolStripMenuItem
+            // 
+            this.changeNameToolStripMenuItem.Name = "changeNameToolStripMenuItem";
+            this.changeNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeNameToolStripMenuItem.Text = "名前の変更";
+            this.changeNameToolStripMenuItem.Click += new System.EventHandler(this.changeNameToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -297,18 +326,22 @@ namespace RssReader {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 683);
             this.Controls.Add(this.btOkini);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lbFavoriteList);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,6 +370,9 @@ namespace RssReader {
         private System.Windows.Forms.ToolStripMenuItem 名前の変更ToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem 名前の変更ToolStripMenuItem1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem operationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeNameToolStripMenuItem;
     }
 }
 
