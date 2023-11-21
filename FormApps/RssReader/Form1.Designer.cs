@@ -49,6 +49,8 @@ namespace RssReader {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.operationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.削除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -308,17 +310,37 @@ namespace RssReader {
             // operationToolStripMenuItem
             // 
             this.operationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeNameToolStripMenuItem});
+            this.changeNameToolStripMenuItem,
+            this.削除ToolStripMenuItem,
+            this.終了XToolStripMenuItem});
+            this.operationToolStripMenuItem.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.operationToolStripMenuItem.Name = "operationToolStripMenuItem";
-            this.operationToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.operationToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.operationToolStripMenuItem.Text = "操作";
             // 
             // changeNameToolStripMenuItem
             // 
             this.changeNameToolStripMenuItem.Name = "changeNameToolStripMenuItem";
-            this.changeNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.changeNameToolStripMenuItem.Text = "名前の変更";
+            this.changeNameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.changeNameToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.changeNameToolStripMenuItem.Text = "名前の変更(&N)";
             this.changeNameToolStripMenuItem.Click += new System.EventHandler(this.changeNameToolStripMenuItem_Click);
+            // 
+            // 削除ToolStripMenuItem
+            // 
+            this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
+            this.削除ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.削除ToolStripMenuItem.Text = "削除(&D)";
+            this.削除ToolStripMenuItem.Click += new System.EventHandler(this.削除ToolStripMenuItem_Click);
+            // 
+            // 終了XToolStripMenuItem
+            // 
+            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
+            this.終了XToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.終了XToolStripMenuItem.Text = "終了(&X)";
+            this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -335,7 +357,7 @@ namespace RssReader {
             this.Controls.Add(this.tbUrl);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "RssReader";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -373,6 +395,8 @@ namespace RssReader {
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem operationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 削除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
     }
 }
 

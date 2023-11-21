@@ -17,34 +17,16 @@ namespace Exercise01 {
         private static void Exercise1_1(string text) {
             #region　自分でやった
 
-            var dict = new SortedDictionary<TKey, TValue>();
+            //var dict = new SortedDictionary<TKey, TValue>();
 
-            foreach(var item in dict) {
-                item.Key = 'A';
-                item.Value = 0;
-            }
+            //foreach(var item in dict) {
+            //    item.Key = 'A';
+            //    item.Value = 0;
+            //}
 
-            foreach(TKey c in text.ToUpper()) {
-                if('A' <= c && c <= 'Z') {
-                    if(dict.ContainsKey(c)) {
-                        dict[c]++;
-                    } else {
-                        dict[c] = 1;
-                    }
-                }
-            }
-
-            foreach(var item in dict) {
-                Console.WriteLine("'{0}'：{1}",item.Key,item.Value);
-            }
-            #endregion
-
-            #region　模範解答
-            //var dict = new Dictionary<Char, int>();
-            //foreach(var c in text) {
-            //    var uc = char.ToUpper(c);
-            //    if('A' <= uc && uc <= 'Z') {
-            //        if(dict.ContainsKey(uc)) {
+            //foreach(TKey c in text.ToUpper()) {
+            //    if('A' <= c && c <= 'Z') {
+            //        if(dict.ContainsKey(c)) {
             //            dict[c]++;
             //        } else {
             //            dict[c] = 1;
@@ -52,9 +34,27 @@ namespace Exercise01 {
             //    }
             //}
 
-            //foreach(var item in dict.OrderBy(c => c.Key)) {
-            //    Console.WriteLine("{0}：{1}", item.Key, item.Value);
+            //foreach(var item in dict) {
+            //    Console.WriteLine("'{0}'：{1}",item.Key,item.Value);
             //}
+            #endregion
+
+            #region　模範解答
+            var dict = new Dictionary<Char, int>();
+            foreach(var c in text) {
+                var uc = char.ToUpper(c);
+                if('A' <= uc && uc <= 'Z') {
+                    if(dict.ContainsKey(uc)) {
+                        dict[c]++;
+                    } else {
+                        dict[c] = 1;
+                    }
+                }
+            }
+
+            foreach(var item in dict.OrderBy(c => c.Key)) {
+                Console.WriteLine("{0}：{1}", item.Key, item.Value);
+            }
             #endregion
         }
 

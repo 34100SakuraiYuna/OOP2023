@@ -27,6 +27,7 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
+            this.MinimumSize = new Size(1000,700);
         }
 
 
@@ -115,21 +116,19 @@ namespace RssReader {
 
             foreach(var siteInfo in ItemDatas) {
                 if(siteInfo.Title == lbRssTitle.SelectedItem.ToString()) {
-                    if(_favoriteSiteInfo.Contains((site)lbRssTitle.SelectedItem)) {
-                        sitedata = new site {
-                            Link = siteInfo.Link,
-                            Title = siteInfo.Title,
-                            Text = siteInfo.Title
-                        };
+                    sitedata = new site {
+                        Link = siteInfo.Link,
+                        Title = siteInfo.Title,
+                        Text = siteInfo.Title
+                    };
 
-                        if(sitedata.Text.Length >= 17) {
-                            sitedata.Text = sitedata.Text.Substring(0, 16) + "...";
-                        }
-
-                        lbFavoriteList.Items.Insert(0, sitedata.Text);
-                        _favoriteSiteInfo.Add(sitedata);
-                        break;
+                    if(sitedata.Text.Length >= 20) {
+                        sitedata.Text = sitedata.Text.Substring(0, 19) + "...";
                     }
+
+                    lbFavoriteList.Items.Insert(0, sitedata.Text);
+                    _favoriteSiteInfo.Add(sitedata);
+                    break;
                 }
             }
         }
@@ -153,10 +152,26 @@ namespace RssReader {
         }
 
 
+        //名前変更ボタン
         private void changeNameToolStripMenuItem_Click(object sender, EventArgs e) {
             MessageBox.Show("この機能は実装されていません");
         }
 
+        
+        //削除ボタン
+        private void 削除ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(lbFavoriteList.SelectedIndex == -1) {
+                MessageBox.Show("削除したい項目を選んでください");
+            } else {
+                _favoriteSiteInfo.RemoveAt(lbFavoriteList.SelectedIndex);
+                lbFavoriteList.Items.RemoveAt(lbFavoriteList.SelectedIndex);
+            }
+        }
 
+
+        //終了ボタン
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
     }
 }
